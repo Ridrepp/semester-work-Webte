@@ -39,6 +39,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="model3.php">Model 3<span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="documentation.php"><?php echo $lang["documentation"]?></a>
+                </li>
             </ul>
         </div>
     </nav>

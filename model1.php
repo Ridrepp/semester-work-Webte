@@ -1,5 +1,5 @@
 <?php
-include "language.php";
+    include "language.php";
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -39,6 +39,9 @@ include "language.php";
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="model3.php">Model 3</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="documentation.php"><?php echo $lang["documentation"]?></a>
                 </li>
             </ul>
         </div>
