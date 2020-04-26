@@ -4,9 +4,9 @@
         "navMainSite" => "Main site",
         "heading" => "Heading",
         "description" => "This is the main site",
-        "documentation" => "Documentation",
+        "documentation" => "Technical documentation",
         "lang_sk" => "Slovak",
         "lang_en" => "English",
         "descriptionDocumentation" => "In this will be documentation.",
-
+        "taskDivision" => "Division of tasks"
     );

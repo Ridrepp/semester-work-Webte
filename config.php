@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "";
-$password = "";
-$dbname = "";
+$username = "xmajtanp";
+$password = "STUApi**20";
+$dbname = "semestralneZadanie";
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);

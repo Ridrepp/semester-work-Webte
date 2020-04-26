@@ -4,8 +4,9 @@
         "navMainSite" => "Hlavná stránka",
         "heading" => "Nadpis",
         "description" => "Toto je hlavná stránka",
-        "documentation" => "Dokumentácia",
+        "documentation" => "Technická dokumentácia",
         "lang_sk" => "Slovenčina",
         "lang_en" => "Angličtina",
         "descriptionDocumentation" => "Tu bude nejaká dokumentácia.",
+        "taskDivision" => "Rozdelenie úloh"
     );
