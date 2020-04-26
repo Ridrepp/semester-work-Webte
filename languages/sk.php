@@ -8,5 +8,9 @@
         "lang_sk" => "Slovenčina",
         "lang_en" => "Angličtina",
         "descriptionDocumentation" => "Tu bude nejaká dokumentácia.",
-        "taskDivision" => "Rozdelenie úloh"
+        "taskDivision" => "Rozdelenie úloh",
+        "sending" => "Odoslať",
+        "input" => "Vstup:",
+        "commands" => "Zadaj príkazy: "
+
     );

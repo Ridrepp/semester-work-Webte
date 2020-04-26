@@ -9,6 +9,10 @@
     <title><?php echo $lang["title"]?></title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="script.js"></script>
 </head>
 
 <body>
@@ -33,17 +37,41 @@
         </div>
     </nav>
 
-<div class="container" style="margin-top: 50px">
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-md-offset-3">
-            <h1><?php echo $lang["heading"]?></h1>
-            <p><?php echo $lang["description"]?></p>
+    <div class="container" style="margin-top: 10px">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-md-offset-3">
+                <h1><?php echo $lang["heading"]?></h1>
+                <p><?php echo $lang["description"]?></p>
+            </div>
+
         </div>
-
     </div>
-</div>
+    <br>
+    <?php
+        if (isset($_POST["inputTextArea"])){
+            echo "<p class='center'>".$_POST["inputTextArea"]."</p>";
+        }
+    ?>
+    <div class="container" style="margin-top: 50px">
+        <div class="row justify-content-center">
+            <div class="col-md-10 ">
+                <form>
+                    <div>
+                        <label for="textArea"><?php echo $lang["commands"]?></label>
+                        <div>
+                            <textarea id="textArea" style="width: 700px; height: 600px">
+                            </textarea>
+                        </div>
+                    </div>
+                    <button type="button" id="textAreaButton"><?php echo $lang["sending"]?></button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-<div class="footer bg-dark">
+    <br>
+    <br>
+    <div class="footer bg-dark">
     <a href="index.php?lang=sk"><?php echo $lang["lang_sk"]?></a>
     | <a href="index.php?lang=en"><?php echo $lang["lang_en"]?></a>
 </div>

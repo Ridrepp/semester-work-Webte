@@ -9,6 +9,10 @@
     <title>Model 3</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
     <script>
         function setup() {
@@ -47,6 +51,21 @@
     </nav>
 
     <br>
+    <div class="container" style="margin-top: 20px">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-md-offset-3">
+                <form>
+                    <label for="input3"><?php echo $lang["input"]?> </label> <input id="input3" type="number">
+                    <button type="button" id="model3"><?php echo $lang["sending"]?></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php
+    if (isset($_POST["input"])){
+        echo $_POST["input"];
+    }
+    ?>
     <div id="tester" style="width:600px;height:250px;"></div>
 
     <script>
@@ -58,8 +77,8 @@
     </script>
 
     <div class="footer bg-dark">
-        <a href="model1.php?lang=sk"><?php echo $lang["lang_sk"]?></a>
-        | <a href="model1.php?lang=en"><?php echo $lang["lang_en"]?></a>
+        <a href="model3.php?lang=sk"><?php echo $lang["lang_sk"]?></a>
+        | <a href="model3.php?lang=en"><?php echo $lang["lang_en"]?></a>
     </div>
 
 </body>

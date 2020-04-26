@@ -8,5 +8,9 @@
         "lang_sk" => "Slovak",
         "lang_en" => "English",
         "descriptionDocumentation" => "In this will be documentation.",
-        "taskDivision" => "Division of tasks"
+        "taskDivision" => "Division of tasks",
+        "sending" => "Send",
+        "input" => "Input:",
+        "commands" => "Enter commands: "
+
     );

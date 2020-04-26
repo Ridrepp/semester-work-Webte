@@ -9,8 +9,13 @@
     <title>Model 1</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-<!--    <script src="sketch.js"></script>-->
+    <!--    <script src="sketch.js"></script>-->
     <script>
         function setup() {
             let cnv = createCanvas(400, 400);
@@ -21,7 +26,6 @@
             background(100);
         }
     </script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 </head>
 
@@ -47,6 +51,21 @@
         </div>
     </nav>
     <br>
+    <div class="container" style="margin-top: 20px">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-md-offset-3">
+                <form>
+                    <label for="input1"><?php echo $lang["input"]?> </label> <input id="input1" type="number">
+                    <button type="button" id="model1"><?php echo $lang["sending"]?></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php
+        if (isset($_POST["input"])){
+            echo $_POST["input"];
+        }
+    ?>
     <div id="tester" style="width:600px;height:250px;"></div>
 
     <script>
