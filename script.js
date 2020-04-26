@@ -4,52 +4,57 @@ $(document).ready(function(){
         $.ajax(
             {
                 type: "POST",
-                url: "model1.php",
-                data: {input: value},
+                url: "api.php",
+                dataType: "json",
+                data: {
+                    action: "kyvadlo",
+                    input: value
+                },
                 success: function(response) {
-                    $("body").html(response);
+                    console.log(response);
+                    return false;
                 }
             }
         );
+        return false;
     });
     $("#model2").click(function() {
         let value = $('#input2').val();
         $.ajax(
             {
                 type: "POST",
-                url: "model2.php",
-                data: {input: value},
+                url: "api.php",
+                dataType: "json",
+                data: {
+                    action: "gulicka",
+                    input: value
+                },
                 success: function(response) {
-                    $("body").html(response);
+                    console.log(response);
+                    return false;
                 }
             }
         );
+        return false;
     });
     $("#model3").click(function() {
         let value = $('#input3').val();
         $.ajax(
             {
                 type: "POST",
-                url: "model3.php",
-                data: {input: value},
+                url: "api.php",
+                dataType: "json",
+                data: {
+                    action: "lietadlo",
+                    input: value
+                },
                 success: function(response) {
-                    $("body").html(response);
+                    console.log(response);
+                    return false;
                 }
             }
         );
-    });
-    $("#model3").click(function() {
-        let value = $('#input3').val();
-        $.ajax(
-            {
-                type: "POST",
-                url: "model3.php",
-                data: {input: value},
-                success: function(response) {
-                    $("body").html(response);
-                }
-            }
-        );
+        return false;
     });
 
     $("#textAreaButton").click(function() {
@@ -57,8 +62,8 @@ $(document).ready(function(){
         $.ajax(
             {
                 type: "POST",
-                dataType: "text",
-                url: "index.php",
+                url: "api.php",
+                dataType: "json",
                 data: {inputTextArea: value},
                 success: function(response) {
                     $("body").html(response);
