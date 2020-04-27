@@ -7,3 +7,6 @@ sudo apt-get install -y liboctave-dev
 in octave:
 pkg install -forge control
 pkg load control
+
+
+sudo chmod 777 var/www
