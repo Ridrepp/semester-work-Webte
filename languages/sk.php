@@ -11,6 +11,8 @@
         "taskDivision" => "Rozdelenie úloh",
         "sending" => "Odoslať",
         "input" => "Vstup:",
-        "commands" => "Zadaj príkazy: "
-
+        "commands" => "Zadaj príkazy: ",
+        "model1" => "Prevrátené kyvadlo",
+        "model2" => "Gulička na tyči",
+        "model3" => "Náklon lietadla"
     );

@@ -30,13 +30,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="model1.php">Model 1</a>
+                    <a class="nav-link" href="model1.php"><?php echo $lang["model1"]?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="model2.php">Model 2</a>
+                    <a class="nav-link" href="model2.php"><?php echo $lang["model2"]?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="model3.php">Model 3</a>
+                    <a class="nav-link" href="model3.php"><?php echo $lang["model3"]?></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="documentation.php"><?php echo $lang["documentation"]?></a>

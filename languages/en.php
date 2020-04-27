@@ -11,6 +11,9 @@
         "taskDivision" => "Division of tasks",
         "sending" => "Send",
         "input" => "Input:",
-        "commands" => "Enter commands: "
+        "commands" => "Enter commands: ",
+        "model1" => "Inverted Pendulum",
+        "model2" => "Ball & Beam",
+        "model3" => "Aircraft Pitch"
 
     );
