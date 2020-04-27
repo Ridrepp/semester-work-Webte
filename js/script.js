@@ -4,7 +4,7 @@ $(document).ready(function(){
         $.ajax(
             {
                 type: "POST",
-                url: "api.php",
+                url: "octaveAPI/api.php",
                 dataType: "json",
                 data: {
                     action: "kyvadlo",
@@ -12,18 +12,20 @@ $(document).ready(function(){
                 },
                 success: function(response) {
                     console.log(response);
-                    return false;
+                },
+                error: function (response) {
+                    console.log(response);
+
                 }
             }
         );
-        return false;
     });
     $("#model2").click(function() {
         let value = $('#input2').val();
         $.ajax(
             {
                 type: "POST",
-                url: "api.php",
+                url: "octaveAPI/api.php",
                 dataType: "json",
                 data: {
                     action: "gulicka",
@@ -42,7 +44,7 @@ $(document).ready(function(){
         $.ajax(
             {
                 type: "POST",
-                url: "api.php",
+                url: "octaveAPI/api.php",
                 dataType: "json",
                 data: {
                     action: "lietadlo",
@@ -62,7 +64,7 @@ $(document).ready(function(){
         $.ajax(
             {
                 type: "POST",
-                url: "api.php",
+                url: "octaveAPI/api.php",
                 dataType: "json",
                 data: {inputTextArea: value},
                 success: function(response) {
