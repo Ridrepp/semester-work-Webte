@@ -12,6 +12,22 @@ $(document).ready(function(){
                 },
                 success: function(response) {
                     console.log(response);
+                    let arrData1 = response.output1;
+                    console.log(arrData1);
+                    let arrData2 = response.output2;
+                    console.log(arrData2);
+                    $.ajax({
+                        type: "POST",
+                        url: "model1.php",
+                        data: {
+                            arrData1: arrData1,
+                            arrData2: arrData2,
+                        },
+
+                        success:function(data){
+                            $("body").html(data);
+                        }
+                    });
                 },
                 error: function (response) {
                     console.log(response);
@@ -33,11 +49,25 @@ $(document).ready(function(){
                 },
                 success: function(response) {
                     console.log(response);
-                    return false;
+                    let arrData1 = response.output1;
+                    console.log(arrData1);
+                    let arrData2 = response.output2;
+                    console.log(arrData2);
+                    $.ajax({
+                        type: "POST",
+                        url: "model2.php",
+                        data: {
+                            arrData1: arrData1,
+                            arrData2: arrData2,
+                        },
+
+                        success:function(data){
+                            $("body").html(data);
+                        }
+                    });
                 }
             }
         );
-        return false;
     });
     $("#model3").click(function() {
         let value = $('#input3').val();
@@ -52,7 +82,22 @@ $(document).ready(function(){
                 },
                 success: function(response) {
                     console.log(response);
-                    return false;
+                    let arrData1 = response.output1;
+                    console.log(arrData1);
+                    let arrData2 = response.output2;
+                    console.log(arrData2);
+                    $.ajax({
+                        type: "POST",
+                        url: "model3.php",
+                        data: {
+                            arrData1: arrData1,
+                            arrData2: arrData2,
+                        },
+
+                        success: function (data) {
+                            $("body").html(data);
+                        }
+                    });
                 }
             }
         );

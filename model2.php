@@ -72,17 +72,56 @@
         </div>
     </div>
     <?php
-    if (isset($_POST["input"])){
-        echo $_POST["input"];
+    if (isset($_POST["arrData1"])){
+        $pc = 0;
+        $x = "";
+        $y = "";
+        foreach ($_POST["arrData1"] as $item){
+            $x = $x . $pc . ", ";
+            $pc++;
+            $y = $y . $item . ", ";
+            //echo $item . "<br>";
+        }
+        substr($x, -2);
+        substr($y, -2);
+    }
+    if (isset($_POST["arrData2"])){
+        $pc = 0;
+        $x2 = "";
+        $y2 = "";
+        foreach ($_POST["arrData2"] as $item){
+            $x2 = $x2 . $pc . ", ";
+            $pc++;
+            $y2 = $y2 . $item . ", ";
+            //echo $item . "<br>";
+        }
+        substr($x2, -2);
+        substr($y2, -2);
+//            echo "<pre>".json_encode($_POST["arrData1"])."</pre>";
     }
     ?>
-    <div id="tester" style="width:600px;height:250px;"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div id="tester" style="width:600px;height:250px;"></div>
+            </div>
+
+            <div class="col-6">
+                <div id="tester2" style="width:600px;height:250px;"></div>
+            </div>
+        </div>
+    </div>
 
     <script>
         TESTER = document.getElementById('tester');
         Plotly.newPlot( TESTER, [{
-            x: [1, 2, 3, 4, 5],
-            y: [1, 2, 4, 8, 16] }], {
+                x: [<?php echo $x?>],
+                y: [<?php echo $y?>]}],
+            {margin: { t: 0 } } );
+        TESTER2 = document.getElementById('tester2');
+        Plotly.newPlot( TESTER2, [{
+            x: [<?php echo $x2?>],
+            y: [<?php echo $y2?>] }], {
             margin: { t: 0 } } );
     </script>
 
