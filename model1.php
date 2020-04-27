@@ -101,14 +101,13 @@
         }
     ?>
     <br>
-    <div class="container">
+    <div>
         <div class="row">
-            <div class="col-6">
-                <div id="tester" style="width:600px;height:250px;"></div>
+            <div class="col-md-6">
+                <div id="tester" style="width:800px;height:400px;"></div>
             </div>
-
-            <div class="col-6">
-                <div id="tester2" style="width:600px;height:250px;"></div>
+            <div class="col-md-6">
+                <div id="tester2" style="width:800px;height:400px;"></div>
             </div>
         </div>
     </div>
@@ -125,10 +124,6 @@
             y: [<?php echo $y2?>] }], {
             margin: { t: 0 } } );
     </script>
-
-
-
-
 
     <div class="footer bg-dark">
         <a href="model1.php?lang=sk"><?php echo $lang["lang_sk"]?></a>

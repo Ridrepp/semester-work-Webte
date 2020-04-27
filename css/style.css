@@ -14,6 +14,9 @@ body {
 .nav-item a{
     color: whitesmoke!important;
 }
+.row{
+    margin-right: 0!important;
+}
 a {
     color: inherit;
     text-decoration: none;
@@ -48,6 +51,7 @@ a.navbar-brand active{
 
 .p5Canvas{
     margin-left: 4%;
+    margin-bottom: 2%;
 }
 
 

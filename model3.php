@@ -60,6 +60,7 @@
     </nav>
 
     <br>
+    <h2 class="center"><?php echo $lang["model3"];?></h2>
     <div class="container" style="margin-top: 20px">
         <div class="row justify-content-center">
             <div class="col-md-6 col-md-offset-3">
@@ -99,14 +100,14 @@
 //            echo "<pre>".json_encode($_POST["arrData1"])."</pre>";
     }
     ?>
-    <div class="container">
+    <br>
+    <div>
         <div class="row">
-            <div class="col-6">
-                <div id="tester" style="width:600px;height:250px;"></div>
+            <div class="col-md-6">
+                <div id="tester" style="width:800px;height:400px;"></div>
             </div>
-
-            <div class="col-6">
-                <div id="tester2" style="width:600px;height:250px;"></div>
+            <div class="col-md-6">
+                <div id="tester2" style="width:800px;height:400px;"></div>
             </div>
         </div>
     </div>
