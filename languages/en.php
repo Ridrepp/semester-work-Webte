@@ -14,6 +14,6 @@
         "commands" => "Enter commands: ",
         "model1" => "Inverted Pendulum",
         "model2" => "Ball & Beam",
-        "model3" => "Aircraft Pitch"
-
+        "model3" => "Aircraft Pitch",
+        "statistics" => "Statistics of usage",
     );

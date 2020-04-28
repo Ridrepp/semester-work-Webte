@@ -14,5 +14,7 @@
         "commands" => "Zadaj príkazy: ",
         "model1" => "Prevrátené kyvadlo",
         "model2" => "Gulička na tyči",
-        "model3" => "Náklon lietadla"
+        "model3" => "Náklon lietadla",
+        "statistics" => "Štatistika použitia",
+
     );

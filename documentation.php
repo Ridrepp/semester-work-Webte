@@ -1,5 +1,6 @@
 <?php
     include "language.php";
+    include "config.php";
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -59,7 +60,7 @@
     <div class="container" style="margin-top: 50px">
         <div class="row justify-content-center">
             <div class="col-md-6 col-md-offset-3">
-                <h1><?php echo $lang["taskDivision"]?></h1>
+                <h2><?php echo $lang["taskDivision"]?></h2>
             </div>
         </div>
     </div>
@@ -98,8 +99,67 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-md-offset-3">
+                <h2><?php echo $lang["statistics"]?></h2>
+            </div>
+        </div>
+    </div>
 
 
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-md-offset-3">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr class="table-dark" style="border: 1px solid black!important;">
+                        <th scope="col"><?php echo $lang["model1"]?></th>
+                        <th scope="col"><?php echo $lang["model2"]?></th>
+                        <th scope="col"><?php echo $lang["model3"]?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <?php
+                            $sqlP = "SELECT count_usage FROM `visits` WHERE `model` = 'Inverted Pendulum';";
+                            if($result = mysqli_query($conn, $sqlP)) {
+                                if(mysqli_num_rows($result) > 0) {
+                                    $row = mysqli_fetch_array($result);
+                                    echo $row["count_usage"];
+                                }
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            $sqlP = "SELECT count_usage FROM `visits` WHERE `model` = 'Ball & Beam';";
+                            if($result = mysqli_query($conn, $sqlP)) {
+                                if(mysqli_num_rows($result) > 0) {
+                                    $row = mysqli_fetch_array($result);
+                                    echo $row["count_usage"];
+                                }
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            $sqlP = "SELECT count_usage FROM `visits` WHERE `model` = 'Aircraft Pitch';";
+                            if($result = mysqli_query($conn, $sqlP)) {
+                                if(mysqli_num_rows($result) > 0) {
+                                    $row = mysqli_fetch_array($result);
+                                    echo $row["count_usage"];
+                                }
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <div class="footer bg-dark">
         <a href="documentation.php?lang=sk"><?php echo $lang["lang_sk"]?></a>

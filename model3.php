@@ -1,5 +1,19 @@
 <?php
     include "language.php";
+    include "config.php";
+
+    $sqlP = "SELECT * FROM `visits` WHERE `model` = 'Aircraft Pitch';";
+
+    if($result = mysqli_query($conn, $sqlP)) {
+        if(mysqli_num_rows($result) > 0) {
+            $sqlP = "UPDATE `visits` SET `count_usage` = `count_usage` + 1 WHERE `model` ='Aircraft Pitch'";
+            $conn->query($sqlP);
+        }
+        else{
+            $sqlP = "INSERT INTO `visits` (`model`,`count_usage`) VALUES ('Aircraft Pitch',1)";
+            $conn->query($sqlP);
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="sk">
