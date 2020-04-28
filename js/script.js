@@ -106,6 +106,8 @@ $(document).ready(function(){
 
     $("#textAreaButton").click(function() {
         let value = $('#textArea').val();
+        //value = value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        //console.log(value);
         $.ajax(
             {
                 type: "POST",
