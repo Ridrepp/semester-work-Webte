@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-header('Content-Type: application/json');
+
 
 //KYVADLO - x(:,1)   x(:,3)
 //GULICKA - N*x(:,1) x(:,3)
@@ -18,10 +18,11 @@ $request_method = $_SERVER["REQUEST_METHOD"];
 if($request_method == "POST"){
     
     if(isset($_POST['input'])){
-        $input = $_POST['input'];    
+        $input = $_POST['input'];   
+        $input = doubleval($input); 
     }
+    
     ob_start();
-    $input = doubleval($input);
     if(isset($_POST['action'])){
         $model = $_POST['action'];
         switch($model){
@@ -29,19 +30,26 @@ if($request_method == "POST"){
                 $filename = "kyvadlo.m";
                 $filename_output1 = "kyvadlo_output_1.mat";
                 $filename_output2 = "kyvadlo_output_2.mat";
+                sendData($filename, $filename_output1, $filename_output2, $input);
             break;
             case "gulicka":
                 $filename = "gulickaNaTyci.m";
                 $filename_output1 = "gulickaNaTyci_output_1.mat";
                 $filename_output2 = "gulickaNaTyci_output_2.mat";
+                sendData($filename, $filename_output1, $filename_output2, $input);
             break;
             case "lietadlo":
                 $filename = "lietadlo.m";
                 $filename_output1 = "lietadlo_output_1.mat";
                 $filename_output2 = "lietadlo_output_2.mat";
+                sendData($filename, $filename_output1, $filename_output2, $input);
+            break;
+            case "command":
+                $command = $_POST['inputTextArea'];
+                createQuery($command);
             break;
         }
-        sendData($filename, $filename_output1, $filename_output2, $input);
+
     }
     
     /*if (is_null($output))
@@ -60,6 +68,8 @@ else{
 }
 
 function sendData($filename, $filename_output1, $filename_output2, $input){
+    header('Content-Type: application/json');
+
     $cmd = "octave-cli ".$filename." ".$input." 2>&1 1> /dev/null";
     shell_exec($cmd);
     $output1 = file_get_contents($filename_output1, true);
@@ -78,6 +88,29 @@ function sendData($filename, $filename_output1, $filename_output2, $input){
     }
 
     echo json_encode(array("output1" => $output1, "output2" => $output2));
+}
+
+function createQuery($command){
+
+    $command = "pkg load control; ".$command;
+    $command = str_replace(';',"\;",$command);
+    $command = str_replace("\n","",$command);
+    $command = str_replace(")","\)",$command);
+    $command = str_replace("(","\(",$command);
+    $command = str_replace("'","\'",$command);
+
+
+    $cmd = "echo ".$command." > input.m";
+
+    shell_exec($cmd);
+
+
+    $cmd = "octave -qf input.m";
+    $output = exec ($cmd);
+    ob_start();
+    passthru($cmd, $output);
+    $var = ob_get_contents();
+
 }
 
 ?>

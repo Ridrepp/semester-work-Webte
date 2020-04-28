@@ -67,12 +67,13 @@
                     <div>
                         <label for="textArea"><?php echo $lang["commands"]?></label>
                         <div>
-                            <textarea id="textArea" style="width: 700px; height: 600px">
-                            </textarea>
+                            <textarea id="textArea" style="width: 700px; height: 600px"></textarea>
                         </div>
                     </div>
                     <button type="button" id="textAreaButton"><?php echo $lang["sending"]?></button>
                 </form>
+                <div id="output">
+                </div>
             </div>
         </div>
     </div>

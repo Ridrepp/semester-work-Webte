@@ -110,10 +110,17 @@ $(document).ready(function(){
             {
                 type: "POST",
                 url: "octaveAPI/api.php",
-                dataType: "json",
-                data: {inputTextArea: value},
+                data: {
+                    inputTextArea: value,
+                    action: "command"
+                },
                 success: function(response) {
-                    $("body").html(response);
+                    console.log(response);
+                    $('#output').html(response);
+                },
+                error: function (response) {
+                    console.log("ERROR");
+                    console.log(response.responseText);
                 }
             }
         );
