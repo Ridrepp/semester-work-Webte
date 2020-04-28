@@ -30,19 +30,19 @@ if($request_method == "POST"){
                 $filename = "kyvadlo.m";
                 $filename_output1 = "kyvadlo_output_1.mat";
                 $filename_output2 = "kyvadlo_output_2.mat";
-                sendData($filename, $filename_output1, $filename_output2, $input, $conn);
+                sendData($filename, $filename_output1, $filename_output2, $input);
             break;
             case "gulicka":
                 $filename = "gulickaNaTyci.m";
                 $filename_output1 = "gulickaNaTyci_output_1.mat";
                 $filename_output2 = "gulickaNaTyci_output_2.mat";
-                sendData($filename, $filename_output1, $filename_output2, $input, $conn);
+                sendData($filename, $filename_output1, $filename_output2, $input);
             break;
             case "lietadlo":
                 $filename = "lietadlo.m";
                 $filename_output1 = "lietadlo_output_1.mat";
                 $filename_output2 = "lietadlo_output_2.mat";
-                sendData($filename, $filename_output1, $filename_output2, $input, $conn);
+                sendData($filename, $filename_output1, $filename_output2, $input);
             break;
             case "command":
                 $command = $_POST['inputTextArea'];
@@ -67,7 +67,7 @@ else{
 
 }
 
-function sendData($filename, $filename_output1, $filename_output2, $input, $conn){
+function sendData($filename, $filename_output1, $filename_output2, $input){
     header('Content-Type: application/json');
 
     $cmd = "octave-cli ".$filename." ".$input." 2>&1 1> /dev/null";
@@ -99,13 +99,6 @@ function createQuery($command, $conn){
     $chars1 = array(";","\n",")","(","'");
     $chars2 = array("\;","","\)","\(","\'");
     $command = str_replace($chars1,$chars2,$command);
-//    $command = str_replace(";","\;",$command);
-//    $command = str_replace("\n","",$command);
-//    $command = str_replace(")","\)",$command);
-//    $command = str_replace("(","\(",$command);
-//    $command = str_replace("'","\'",$command);
-
-
 
     $cmd = "echo ".$command." > superInput.m";
 
@@ -123,7 +116,7 @@ function createQuery($command, $conn){
         $error_message = null;
         $sent_command = str_replace("'","'\"\"'",$sent_command);
         $sql = "INSERT INTO textArea_log (time,sent_command,error,error_message) values ('$date','$sent_command', $error, '$error_message')";
-        echo $sql;
+//        echo $sql;
         $conn->query($sql);
         
 
@@ -140,42 +133,13 @@ function createQuery($command, $conn){
         $sent_command = str_replace("'","'\"\"'",$sent_command);
         $error_message = str_replace("'","'\"\"'",$error_message);
         $sql = "INSERT INTO textArea_log (time,sent_command,error,error_message) values ('$date','$sent_command',$error,'$error_message')";
-            if ($conn->query($sql) === TRUE) {
-                echo $sql ;
-            } else {
+            if ($conn->query($sql) !== TRUE) {
                 echo "Error: " . $sql . "<br>" . $conn->error."<br>";
             }
+            echo $error_message;
         }
-//        echo $error_message;
-
-
-        /*
-        if($result = mysqli_query($conn, $sql)) {
-            if(!mysqli_num_rows($result) > 0){
-                $sql = "INSERT INTO)  VALUES ('$ip', 1);";
-                $conn->query($sql);
-            }
-        }
-*/
-        
 
     }
 
-
-    //
-/*
-    
-
-    //var_dump($shell_output);
-    
-
-    
-
-    
-*/
-
-
-
-//}
 
 ?>
