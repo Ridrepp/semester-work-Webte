@@ -96,11 +96,14 @@ function createQuery($command, $conn){
     $date = date("Y-m-d H:i:s");
 
     $command = "pkg load control; ".$command;
-    $command = str_replace(';',"\;",$command);
-    $command = str_replace("\n","",$command);
-    $command = str_replace(")","\)",$command);
-    $command = str_replace("(","\(",$command);
-    $command = str_replace("'","\'",$command);
+    $chars1 = array(";","\n",")","(","'");
+    $chars2 = array("\;","","\)","\(","\'");
+    $command = str_replace($chars1,$chars2,$command);
+//    $command = str_replace(";","\;",$command);
+//    $command = str_replace("\n","",$command);
+//    $command = str_replace(")","\)",$command);
+//    $command = str_replace("(","\(",$command);
+//    $command = str_replace("'","\'",$command);
 
 
 
@@ -118,7 +121,8 @@ function createQuery($command, $conn){
     if ($pos === false) {
         $error = 0;
         $error_message = null;
-        $sql = "INSERT INTO textArea_log (time,sent_command,error,error_message) values ('$date',\'".$sent_command."\', $error, '$error_message')";
+        $sent_command = str_replace("'","'\"\"'",$sent_command);
+        $sql = "INSERT INTO textArea_log (time,sent_command,error,error_message) values ('$date','$sent_command', $error, '$error_message')";
         echo $sql;
         $conn->query($sql);
         
@@ -132,17 +136,19 @@ function createQuery($command, $conn){
     } else {
         $error = 1;
         $error_message = $shell_output;
-        
-        try{
-            $sent_command = mysqli_real_escape_string($sent_command);
-            $sql = "INSERT INTO textArea_log (time,sent_command,error,error_message) values ('$date',$sent_command, $error, '$error_message')";
-            echo $sql;
-            $conn->query($sql);
+
+        $sent_command = str_replace("'","'\"\"'",$sent_command);
+        $error_message = str_replace("'","'\"\"'",$error_message);
+        $sql = "INSERT INTO textArea_log (time,sent_command,error,error_message) values ('$date','$sent_command',$error,'$error_message')";
+            if ($conn->query($sql) === TRUE) {
+                echo $sql ;
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error."<br>";
+            }
         }
-        catch(Exception $e){
-            echo $e->getMessage();
-        }
-        echo $error_message;
+//        echo $error_message;
+
+
         /*
         if($result = mysqli_query($conn, $sql)) {
             if(!mysqli_num_rows($result) > 0){
@@ -155,7 +161,7 @@ function createQuery($command, $conn){
 
     }
 
-    
+
     //
 /*
     
@@ -170,6 +176,6 @@ function createQuery($command, $conn){
 
 
 
-}
+//}
 
 ?>
