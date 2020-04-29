@@ -1,4 +1,12 @@
 $(document).ready(function(){
+    display();
+    $('#animation_model1').click(function(){
+        display();
+    });
+    $('#graph_model1').click(function(){
+        display();
+    });
+
     $("#model1").click(function() {
         let value = $('#input1').val();
         $.ajax(
@@ -128,3 +136,42 @@ $(document).ready(function(){
         );
     });
 });
+
+function display(){
+    var animation_checked = $("#animation_model1").is(':checked');
+    var graph_checked = $("#graph_model1").is(':checked');
+    if(animation_checked && graph_checked){
+        enableAnimation();
+        enableGraph();
+    }
+    else if(animation_checked && !graph_checked){
+        enableAnimation();
+        disableGraph();
+    }
+    else if(!animation_checked && graph_checked){
+        disableAnimation();
+        enableGraph();
+    }
+    else{
+        disableAnimation();
+        disableGraph();
+    }
+    
+}
+function enableGraph(){
+    $('#tester1').show();
+    $('#tester2').show();
+}
+function disableGraph(){
+    console.log("disabled");
+    $('#tester1').hide();
+    $('#tester2').hide();
+}
+function enableAnimation(){
+   /* $('#').show();
+    $('#').show();*/
+}
+function disableAnimation(){
+   /* $('#').hide();
+    $('#').hide();*/
+}

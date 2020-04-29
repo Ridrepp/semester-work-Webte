@@ -16,4 +16,6 @@
         "model2" => "Ball & Beam",
         "model3" => "Aircraft Pitch",
         "statistics" => "Statistics of usage",
+        "graph" => "Graph",
+        "animation" => "Animation"
     );

@@ -16,5 +16,6 @@
         "model2" => "Gulička na tyči",
         "model3" => "Náklon lietadla",
         "statistics" => "Štatistika použitia",
-
+        "graph" => "Graf",
+        "animation" => "Animácia"
     );

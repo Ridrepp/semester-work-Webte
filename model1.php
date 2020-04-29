@@ -81,6 +81,16 @@
                     <label for="input1"><?php echo $lang["input"]?> </label> <input id="input1" type="number">
                     <button type="button" id="model1"><?php echo $lang["sending"]?></button>
                 </form>
+                <div style="display:flex; justify-content: space-between; width:35%; margin:20px auto;">
+                    <div style="flex">
+                        <input type="checkbox" id="animation_model1" name="animation" value="animation" checked="true">
+                        <label for="animation"><?php echo $lang["animation"]?></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="graph_model1" name="graph" value="graph" checked="true">
+                        <label for="vehicle2"><?php echo $lang["graph"]?></label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
