@@ -39,8 +39,8 @@
     <script>
         function setup() {
             let cnv = createCanvas(400, 400);
-            cnv.class("kyvadlo p5Canvas");
-            cnv.id("kyvadlo");
+            cnv.class("animationP5 p5Canvas");
+            cnv.id("animationP5");
         }
         function draw() {
             background(100);
@@ -128,22 +128,22 @@
     <div>
         <div class="row">
             <div class="col-md-6">
-                <div id="tester" style="width:800px;height:400px;"></div>
+                <div id="graphPlotly1" style="width:800px;height:400px;"></div>
             </div>
             <div class="col-md-6">
-                <div id="tester2" style="width:800px;height:400px;"></div>
+                <div id="graphPlotly2" style="width:800px;height:400px;"></div>
             </div>
         </div>
     </div>
 
     <script>
-        TESTER = document.getElementById('tester');
-        Plotly.newPlot( TESTER, [{
+        Graph1 = document.getElementById('graphPlotly1');
+        Plotly.newPlot( Graph1, [{
                 x: [<?php echo $x?>],
                 y: [<?php echo $y?>]}],
             {margin: { t: 0 } } );
-        TESTER2 = document.getElementById('tester2');
-        Plotly.newPlot( TESTER2, [{
+        Graph2 = document.getElementById('graphPlotly2');
+        Plotly.newPlot( Graph2, [{
             x: [<?php echo $x2?>],
             y: [<?php echo $y2?>] }], {
             margin: { t: 0 } } );

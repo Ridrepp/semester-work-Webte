@@ -138,8 +138,8 @@ $(document).ready(function(){
 });
 
 function display(){
-    var animation_checked = $("#animation_model1").is(':checked');
-    var graph_checked = $("#graph_model1").is(':checked');
+    let animation_checked = $("#animation_model1").is(':checked');
+    let graph_checked = $("#graph_model1").is(':checked');
     if(animation_checked && graph_checked){
         enableAnimation();
         enableGraph();
@@ -159,19 +159,17 @@ function display(){
     
 }
 function enableGraph(){
-    $('#tester1').show();
-    $('#tester2').show();
+    $('#graphPlotly1').show();
+    $('#graphPlotly2').show();
 }
 function disableGraph(){
     console.log("disabled");
-    $('#tester1').hide();
-    $('#tester2').hide();
+    $('#graphPlotly1').hide();
+    $('#graphPlotly2').hide();
 }
 function enableAnimation(){
-   /* $('#').show();
-    $('#').show();*/
+    $('#animationP5').show();
 }
 function disableAnimation(){
-   /* $('#').hide();
-    $('#').hide();*/
+    $('#animationP5').hide();
 }
