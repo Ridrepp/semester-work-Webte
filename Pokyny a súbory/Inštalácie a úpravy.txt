@@ -10,3 +10,10 @@ pkg load control
 
 
 sudo chmod 777 var/www
+
+
+sudo apt-get install sendmail
+
+sudo vim etc/hosts - zakomentovanie: 127.0.0.1 localhost
+                   - zapísanie: 127.0.0.1 localhost.localdomain localhost os-webtech1-4
+sudo etc/mail/sendmail.cf - odkomentovanie #O HostsFile=/etc/hosts

@@ -10,12 +10,9 @@
     <title><?php echo $lang["documentation"]?></title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+    <script src="js/mailScript.js"></script>
 </head>
 
 <body>
@@ -157,6 +154,21 @@
                     </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-md-offset-3">
+                <h5><?php echo $lang["statistics_email"]?></h5>
+                <form>
+                    E-mail:
+                    <label>
+                        <input id="email" name="email" type="text" size="32" />
+                    </label>
+                    <button type="button" id="sendEmail"><?php echo $lang["sending"]?></button>
+                </form>
             </div>
         </div>
     </div>

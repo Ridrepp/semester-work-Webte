@@ -18,5 +18,6 @@
         "statistics" => "Štatistika použitia",
         "graph" => "Graf",
         "animation" => "Animácia",
-        "start_input" => "Počiatočná hodnota"
+        "start_input" => "Počiatočná hodnota",
+        "statistics_email" => "Odoslanie štatistík na email"
     );

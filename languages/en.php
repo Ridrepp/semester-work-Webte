@@ -18,5 +18,6 @@
         "statistics" => "Statistics of usage",
         "graph" => "Graph",
         "animation" => "Animation",
-        "start_input" => "Initial value"
+        "start_input" => "Initial value",
+        "statistics_email" => "Send statistics to email"
     );

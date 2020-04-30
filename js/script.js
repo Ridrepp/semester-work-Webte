@@ -137,6 +137,25 @@ $(document).ready(function(){
             }
         );
     });
+    $("#sendEmail").click(function() {
+        let email = $('#email').val();
+        $.ajax(
+            {
+                type: "POST",
+                url: "mail.php",
+                data: {
+                    email: email,
+                },
+                success: function(response) {
+                    $.notify(response,"success");
+                },
+                error: function (response) {
+                    $.notify("Error","error");
+                }
+            }
+        );
+    });
+
 });
 
 function display(){
