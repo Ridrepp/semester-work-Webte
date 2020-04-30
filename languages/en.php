@@ -17,5 +17,6 @@
         "model3" => "Aircraft Pitch",
         "statistics" => "Statistics of usage",
         "graph" => "Graph",
-        "animation" => "Animation"
+        "animation" => "Animation",
+        "start_input" => "Initial value"
     );

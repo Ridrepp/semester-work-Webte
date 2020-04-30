@@ -17,5 +17,6 @@
         "model3" => "Náklon lietadla",
         "statistics" => "Štatistika použitia",
         "graph" => "Graf",
-        "animation" => "Animácia"
+        "animation" => "Animácia",
+        "start_input" => "Počiatočná hodnota"
     );

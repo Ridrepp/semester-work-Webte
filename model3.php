@@ -79,7 +79,10 @@
         <div class="row justify-content-center">
             <div class="col-md-6 col-md-offset-3">
                 <form>
-                    <label for="input3"><?php echo $lang["input"]?> </label> <input id="input3" type="number">
+                    <div id="initialInput">
+                        <label for="input3_start"><?php echo $lang["start_input"]?> </label> <input id="input3_start" type="number">
+                    </div>
+                    <label for="input3"><?php echo $lang["input"]?> </label> <input id="input3" type="number"><br>
                     <button type="button" id="model3"><?php echo $lang["sending"]?></button>
                 </form>
                 <div style="display:flex; justify-content: space-between; width:35%; margin:20px auto;">
@@ -89,65 +92,17 @@
                     </div>
                     <div>
                         <input type="checkbox" id="graph_model1" name="graph" value="graph" checked="true">
-                        <label for="vehicle2"><?php echo $lang["graph"]?></label>
+                        <label for="graph"><?php echo $lang["graph"]?></label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <?php
-    if (isset($_POST["arrData1"])){
-        $pc = 0;
-        $x = "";
-        $y = "";
-        foreach ($_POST["arrData1"] as $item){
-            $x = $x . $pc . ", ";
-            $pc++;
-            $y = $y . $item . ", ";
-            //echo $item . "<br>";
-        }
-        substr($x, -2);
-        substr($y, -2);
-    }
-    if (isset($_POST["arrData2"])){
-        $pc = 0;
-        $x2 = "";
-        $y2 = "";
-        foreach ($_POST["arrData2"] as $item){
-            $x2 = $x2 . $pc . ", ";
-            $pc++;
-            $y2 = $y2 . $item . ", ";
-            //echo $item . "<br>";
-        }
-        substr($x2, -2);
-        substr($y2, -2);
-//            echo "<pre>".json_encode($_POST["arrData1"])."</pre>";
-    }
-    ?>
-    <br>
     <div>
         <div class="row">
-            <div class="col-md-6">
-                <div id="graphPlotly1" style="width:800px;height:400px;"></div>
-            </div>
-            <div class="col-md-6">
-                <div id="graphPlotly2" style="width:800px;height:400px;"></div>
-            </div>
+            <div id="graphPlotly1" style="width:1500px;height:450px;"></div>
         </div>
     </div>
-
-    <script>
-        Graph1 = document.getElementById('graphPlotly1');
-        Plotly.newPlot( Graph1, [{
-                x: [<?php echo $x?>],
-                y: [<?php echo $y?>]}],
-            {margin: { t: 0 } } );
-        Graph2 = document.getElementById('graphPlotly2');
-        Plotly.newPlot( Graph2, [{
-            x: [<?php echo $x2?>],
-            y: [<?php echo $y2?>] }], {
-            margin: { t: 0 } } );
-    </script>
 
     <div class="footer bg-dark">
         <a href="model3.php?lang=sk"><?php echo $lang["lang_sk"]?></a>

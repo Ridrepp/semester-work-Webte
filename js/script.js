@@ -1,4 +1,9 @@
 $(document).ready(function(){
+    let start_input;
+    let data = [];
+    let graph = document.getElementById('graphPlotly1');
+    Plotly.newPlot(graph, data);
+
     display();
     $('#animation_model1').click(function(){
         display();
@@ -8,7 +13,8 @@ $(document).ready(function(){
     });
 
     $("#model1").click(function() {
-        let value = $('#input1').val();
+        start_input = $('#input1_start').val();
+        let end_input = $('#input1').val();
         $.ajax(
             {
                 type: "POST",
@@ -16,26 +22,14 @@ $(document).ready(function(){
                 dataType: "json",
                 data: {
                     action: "kyvadlo",
-                    input: value
+                    start_input: start_input,
+                    end_input: end_input
                 },
                 success: function(response) {
+                    $('#initialInput').hide();
+                    start_input = response.last_end_input;
                     console.log(response);
-                    let arrData1 = response.output1;
-                    console.log(arrData1);
-                    let arrData2 = response.output2;
-                    console.log(arrData2);
-                    $.ajax({
-                        type: "POST",
-                        url: "model1.php",
-                        data: {
-                            arrData1: arrData1,
-                            arrData2: arrData2,
-                        },
-
-                        success:function(data){
-                            $("body").html(data);
-                        }
-                    });
+                    updateGraph(graph, response.output1, response.output2);
                 },
                 error: function (response) {
                     console.log(response);
@@ -45,7 +39,8 @@ $(document).ready(function(){
         );
     });
     $("#model2").click(function() {
-        let value = $('#input2').val();
+        start_input = $('#input2_start').val();
+        let end_input = $('#input2').val();
         $.ajax(
             {
                 type: "POST",
@@ -53,32 +48,21 @@ $(document).ready(function(){
                 dataType: "json",
                 data: {
                     action: "gulicka",
-                    input: value
+                    start_input: start_input,
+                    end_input: end_input
                 },
                 success: function(response) {
+                    $('#initialInput').hide();
+                    start_input = response.last_end_input;
                     console.log(response);
-                    let arrData1 = response.output1;
-                    console.log(arrData1);
-                    let arrData2 = response.output2;
-                    console.log(arrData2);
-                    $.ajax({
-                        type: "POST",
-                        url: "model2.php",
-                        data: {
-                            arrData1: arrData1,
-                            arrData2: arrData2,
-                        },
-
-                        success:function(data){
-                            $("body").html(data);
-                        }
-                    });
+                    updateGraph(graph, response.output1, response.output2);
                 }
             }
         );
     });
     $("#model3").click(function() {
-        let value = $('#input3').val();
+        start_input = $('#input3_start').val();
+        let end_input = $('#input3').val();  
         $.ajax(
             {
                 type: "POST",
@@ -86,26 +70,14 @@ $(document).ready(function(){
                 dataType: "json",
                 data: {
                     action: "lietadlo",
-                    input: value
+                    start_input: start_input,
+                    end_input: end_input
                 },
                 success: function(response) {
+                    $('#initialInput').hide();
+                    start_input = response.last_end_input;
                     console.log(response);
-                    let arrData1 = response.output1;
-                    console.log(arrData1);
-                    let arrData2 = response.output2;
-                    console.log(arrData2);
-                    $.ajax({
-                        type: "POST",
-                        url: "model3.php",
-                        data: {
-                            arrData1: arrData1,
-                            arrData2: arrData2,
-                        },
-
-                        success: function (data) {
-                            $("body").html(data);
-                        }
-                    });
+                    updateGraph(graph, response.output1, response.output2);
                 }
             }
         );
@@ -114,8 +86,6 @@ $(document).ready(function(){
 
     $("#textAreaButton").click(function() {
         let value = $('#textArea').val();
-        //value = value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        //console.log(value);
         $.ajax(
             {
                 type: "POST",
@@ -172,4 +142,53 @@ function enableAnimation(){
 }
 function disableAnimation(){
     $('#animationP5').hide();
+}
+
+function updateGraph(graphName, y1, y2){
+    let xArr = Array();
+    let max = y1;
+    if(y1.length < y2.length){
+        max = y2;
+    }
+
+    for(let x = 0; x < max.length; x++){
+        xArr.push(x);
+    }
+
+    let graph1 = {
+        x: xArr,
+        y: y1,
+        type: 'scatter',
+        name: 'Prvý výstup',
+        line: {
+            color: 'blue',
+            width: 1   
+        }
+    };
+    let graph2 = {
+        x: xArr,
+        y: y2,
+        type: 'scatter',
+        name: 'Druhý výstup',
+        line: {
+            color: 'green',
+            width: 1   
+        }
+    };
+
+    let layout = {
+        title: 'Graf Plotly',
+        xaxis: {
+        title: 'x',
+        },
+        yaxis: {
+        title: 'y',
+        }
+
+    }
+    let data = [graph1, graph2];
+
+    Plotly.newPlot(graphName, data, layout);
+
+    //Plotly.update(graphName, data, layout, 1);
 }
