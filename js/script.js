@@ -4,6 +4,23 @@ $(document).ready(function(){
     let graph = document.getElementById('graphPlotly1');
     Plotly.newPlot(graph, data);
 
+    var canvas = new fabric.Canvas('fabricAnim');
+    var pendulumImgSrc = 'inv_pendulum_edited.png';
+    fabric.Image.fromURL(pendulumImgSrc, function(img){
+        /*img.width = 550;
+        img.height = 400;*/
+        img.left = 200;
+        img.selectable = false;
+        canvas.add(img);
+
+        img.animate({left: 500, top: 50},{
+            onChange: canvas.renderAll.bind(canvas),
+            duration: 2000
+        })
+    })
+
+    
+
     display();
     $('#animation_model1').click(function(){
         display();
@@ -30,6 +47,21 @@ $(document).ready(function(){
                     start_input = response.last_end_input;
                     console.log(response);
                     updateGraph(graph, response.output1, response.output2);
+                    fabric.Image.fromURL(pendulumImgSrc, function (img) {
+                        /*img.scale(0.5).set({
+                            left: 100,
+                            top: 100
+                        });
+                        canvas.add(img).setActiveObject(img);
+                        img.moveTo(0);*/
+                        console.log(img.angle);
+                        console.log("animating");
+
+                        img.animate({left: 100, top: 0},{
+                            onChange: canvas.renderAll.bind(canvas),
+                            duration: 2000
+                        })
+                    });
                 },
                 error: function (response) {
                     console.log(response);
@@ -130,18 +162,15 @@ function display(){
 }
 function enableGraph(){
     $('#graphPlotly1').show();
-    $('#graphPlotly2').show();
 }
 function disableGraph(){
-    console.log("disabled");
     $('#graphPlotly1').hide();
-    $('#graphPlotly2').hide();
 }
 function enableAnimation(){
-    $('#animationP5').show();
+    $('#animation').show();
 }
 function disableAnimation(){
-    $('#animationP5').hide();
+    $('#animation').hide();
 }
 
 function updateGraph(graphName, y1, y2){

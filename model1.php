@@ -35,7 +35,8 @@
     <script src="js/script.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-    <!--    <script src="sketch.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.3/fabric.min.js"></script>
+    <!--    <script src="sketch.js"></script>
     <script>
         function setup() {
             let cnv = createCanvas(400, 400);
@@ -46,7 +47,7 @@
             background(100);
         }
     </script>
-
+-->
 </head>
 
 <body>
@@ -100,9 +101,16 @@
 
     <div>
         <div class="row">
-            <div id="graphPlotly1" style="width:1500px;height:450px;"></div>
+            <div id="graphPlotly1" style="width:1500px;height:420px;"></div>
         </div>
     </div>
+
+    
+    <div class="row" id = "animation">
+        <canvas id="fabricAnim" width="1222" height="600"></canvas>
+        <!--<img src="inv_pendulum_edited.png" id="pendulum_img">-->
+    </div>
+  
 
     <div class="footer bg-dark">
         <a href="model1.php?lang=sk"><?php echo $lang["lang_sk"]?></a>
