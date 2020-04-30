@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    let start_input;
+
     let data = [];
     let graph = document.getElementById('graphPlotly1');
     Plotly.newPlot(graph, data);
@@ -31,7 +31,7 @@ $(document).ready(function(){
 
     $("#model1").click(function() {
         start_input = $('#input1_start').val();
-        let end_input = $('#input1').val();
+        end_input = $('#input1').val();
         $.ajax(
             {
                 type: "POST",
@@ -44,7 +44,8 @@ $(document).ready(function(){
                 },
                 success: function(response) {
                     $('#initialInput').hide();
-                    start_input = response.last_end_input;
+                    $('#input1_start').val(response.last_end_input);
+
                     console.log(response);
                     updateGraph(graph, response.output1, response.output2);
                     fabric.Image.fromURL(pendulumImgSrc, function (img) {
@@ -54,8 +55,8 @@ $(document).ready(function(){
                         });
                         canvas.add(img).setActiveObject(img);
                         img.moveTo(0);*/
-                        console.log(img.angle);
-                        console.log("animating");
+                        //console.log(img.angle);
+                        //console.log("animating");
 
                         img.animate({left: 100, top: 0},{
                             onChange: canvas.renderAll.bind(canvas),
@@ -64,7 +65,7 @@ $(document).ready(function(){
                     });
                 },
                 error: function (response) {
-                    console.log(response);
+                    console.log(response.responseText);
 
                 }
             }

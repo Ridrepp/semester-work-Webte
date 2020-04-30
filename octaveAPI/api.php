@@ -22,6 +22,7 @@ if($request_method == "POST"){
         $end_input = doubleval($end_input); 
     }
     if(isset($_POST['start_input'])){
+        //echo $_POST['start_input'];
         $start_input = $_POST['start_input'];   
         $start_input = doubleval($start_input); 
     }
@@ -91,7 +92,7 @@ function sendData($filename, $filename_output1, $filename_output2, $end_input, $
         $output1[$key] = floatval($value);
     }
 
-    echo json_encode(array("output1" => $output1, "output2" => $output2, "last_end_input" => $end_input));
+    echo json_encode(array("output1" => $output1, "output2" => $output2, "start_input" => $start_input, "last_end_input" => $end_input));
 }
 
 function createQuery($command, $conn){
