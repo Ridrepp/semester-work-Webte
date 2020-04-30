@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     let data = [];
     let graph = document.getElementById('graphPlotly1');
     Plotly.newPlot(graph, data);
@@ -17,7 +16,7 @@ $(document).ready(function(){
             onChange: canvas.renderAll.bind(canvas),
             duration: 2000
         })
-    })
+    });
 
     
 
@@ -45,18 +44,6 @@ $(document).ready(function(){
                 success: function(response) {
                     $('#initialInput').hide();
                     $('#input1_start').val(response.last_end_input);
-
-                    $.ajax(
-                        {
-                            type: "POST",
-                            url: "octaveAPI/model1.php",
-                            data: {
-                                button: "buttonSubmit1"
-                            },
-                            success: function(response) {
-                            },
-                        }
-                    )
                     console.log(response);
                     updateGraph(graph, response.output1, response.output2);
                     fabric.Image.fromURL(pendulumImgSrc, function (img) {
@@ -77,14 +64,13 @@ $(document).ready(function(){
                 },
                 error: function (response) {
                     console.log(response.responseText);
-
                 }
             }
         );
     });
     $("#model2").click(function() {
         start_input = $('#input2_start').val();
-        let end_input = $('#input2').val();
+        end_input = $('#input2').val();
         $.ajax(
             {
                 type: "POST",
@@ -97,16 +83,20 @@ $(document).ready(function(){
                 },
                 success: function(response) {
                     $('#initialInput').hide();
-                    start_input = response.last_end_input;
+                    $('#input2_start').val(response.last_end_input);
                     console.log(response);
                     updateGraph(graph, response.output1, response.output2);
+                },
+                error: function (response) {
+                    console.log(response.responseText);
+
                 }
             }
         );
     });
     $("#model3").click(function() {
         start_input = $('#input3_start').val();
-        let end_input = $('#input3').val();  
+        end_input = $('#input3').val();
         $.ajax(
             {
                 type: "POST",
@@ -119,9 +109,13 @@ $(document).ready(function(){
                 },
                 success: function(response) {
                     $('#initialInput').hide();
-                    start_input = response.last_end_input;
+                    $('#input3_start').val(response.last_end_input);
                     console.log(response);
                     updateGraph(graph, response.output1, response.output2);
+                },
+                error: function (response) {
+                    console.log(response.responseText);
+
                 }
             }
         );
@@ -245,10 +239,10 @@ function updateGraph(graphName, y1, y2){
         title: 'y',
         }
 
-    }
+    };
     let data = [graph1, graph2];
 
     Plotly.newPlot(graphName, data, layout);
 
-    //Plotly.update(graphName, data, layout, 1);
+    // Plotly.update(graphName, data, layout, 1);
 }

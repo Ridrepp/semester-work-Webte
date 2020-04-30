@@ -1,20 +1,6 @@
 <?php
     include "language.php";
     include "config.php";
-    if(isset($_POST["buttonSubmit2"])){
-        $sqlP = "SELECT * FROM `visits` WHERE `model` = 'Ball & Beam';";
-
-        if($result = mysqli_query($conn, $sqlP)) {
-            if(mysqli_num_rows($result) > 0) {
-                $sqlP = "UPDATE `visits` SET `count_usage` = `count_usage` + 1 WHERE `model` ='Ball & Beam'";
-                $conn->query($sqlP);
-            }
-            else{
-                $sqlP = "INSERT INTO `visits` (`model`,`count_usage`) VALUES ('Ball & Beam',1)";
-                $conn->query($sqlP);
-            }
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -36,23 +22,39 @@
     <script src="js/script.js"></script>
     <script src="js/buttonScript.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.3/fabric.min.js"></script>
-    <script>
-        function setup() {
-            let cnv = createCanvas(400, 400);
-            cnv.class("animationP5 p5Canvas");
-            cnv.id("animationP5");
-        }
-        function draw() {
-            background(100);
-        }
-    </script>
+<!--    <script>-->
+<!--        function setup() {-->
+<!--            let cnv = createCanvas(400, 400);-->
+<!--            cnv.class("animationP5 p5Canvas");-->
+<!--            cnv.id("animationP5");-->
+<!--        }-->
+<!--        function draw() {-->
+<!--            background(100);-->
+<!--        }-->
+<!--    </script>-->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 </head>
 
 <body>
+    <?php
+    if(isset($_POST["button"])){
+        $sqlP = "SELECT * FROM `visits` WHERE `model` = 'Ball & Beam';";
+
+        if($result = mysqli_query($conn, $sqlP)) {
+            if(mysqli_num_rows($result) > 0) {
+                $sqlP = "UPDATE `visits` SET `count_usage` = `count_usage` + 1 WHERE `model` ='Ball & Beam'";
+                $conn->query($sqlP);
+            }
+            else{
+                $sqlP = "INSERT INTO `visits` (`model`,`count_usage`) VALUES ('Ball & Beam',1)";
+                $conn->query($sqlP);
+            }
+        }
+    }
+    ?>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="index.php"><?php echo $lang["navMainSite"]?><span class="sr-only">(current)</span></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -1,20 +1,7 @@
 <?php
     include "language.php";
     include "config.php";
-    if(isset($_POST["buttonSubmit1"])){
-        $sqlP = "SELECT * FROM `visits` WHERE `model` = 'Inverted Pendulum';";
 
-        if($result = mysqli_query($conn, $sqlP)) {
-            if(mysqli_num_rows($result) > 0) {
-                $sqlP = "UPDATE `visits` SET `count_usage` = `count_usage` + 1 WHERE `model` ='Inverted Pendulum'";
-                $conn->query($sqlP);
-            }
-            else{
-                $sqlP = "INSERT INTO `visits` (`model`,`count_usage`) VALUES ('Inverted Pendulum',1)";
-                $conn->query($sqlP);
-            }
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -36,7 +23,7 @@
     <script src="js/script.js"></script>
     <script src="js/buttonScript.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.3/fabric.min.js"></script>
     <!--    <script src="sketch.js"></script>
     <script>
@@ -53,6 +40,22 @@
 </head>
 
 <body>
+    <?php
+    if(isset($_POST["button"])){
+        $sqlP = "SELECT * FROM `visits` WHERE `model` = 'Inverted Pendulum';";
+
+        if($result = mysqli_query($conn, $sqlP)) {
+            if(mysqli_num_rows($result) > 0) {
+                $sqlP = "UPDATE `visits` SET `count_usage` = `count_usage` + 1 WHERE `model` ='Inverted Pendulum'";
+                $conn->query($sqlP);
+            }
+            else{
+                $sqlP = "INSERT INTO `visits` (`model`,`count_usage`) VALUES ('Inverted Pendulum',1)";
+                $conn->query($sqlP);
+            }
+        }
+    }
+    ?>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="index.php"><?php echo $lang["navMainSite"]?></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +83,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-md-offset-3">
-                <form>
+                <form id="model">
                     <div id="initialInput">
                         <label for="input1_start"><?php echo $lang["start_input"]?> </label> <input id="input1_start" type="number">
                     </div>

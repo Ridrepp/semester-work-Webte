@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $("#model1").click(function() {
+        // let data = $("#model").serialize();
         $.ajax(
             {
                 type: "POST",
@@ -7,7 +8,8 @@ $(document).ready(function(){
                 data: {
                     button: "buttonSubmit1"
                 },
-                success: function(response) {
+                success: function() {
+                    $("body").html();
                 },
             }
         );
@@ -21,7 +23,6 @@ $(document).ready(function(){
                     button: "buttonSubmit2"
                 },
                 success: function(response) {
-                    $("body").html(response);
                 },
             }
         );
@@ -35,6 +36,7 @@ $(document).ready(function(){
                     button: "buttonSubmit3"
                 },
                 success: function(response) {
+                    $("body").html(response);
                 },
             }
         );
