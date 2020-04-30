@@ -46,6 +46,17 @@ $(document).ready(function(){
                     $('#initialInput').hide();
                     $('#input1_start').val(response.last_end_input);
 
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "octaveAPI/model1.php",
+                            data: {
+                                button: "buttonSubmit1"
+                            },
+                            success: function(response) {
+                            },
+                        }
+                    )
                     console.log(response);
                     updateGraph(graph, response.output1, response.output2);
                     fabric.Image.fromURL(pendulumImgSrc, function (img) {

@@ -1,17 +1,18 @@
 <?php
     include "language.php";
     include "config.php";
+    if(isset($_POST["buttonSubmit2"])){
+        $sqlP = "SELECT * FROM `visits` WHERE `model` = 'Ball & Beam';";
 
-    $sqlP = "SELECT * FROM `visits` WHERE `model` = 'Ball & Beam';";
-
-    if($result = mysqli_query($conn, $sqlP)) {
-        if(mysqli_num_rows($result) > 0) {
-            $sqlP = "UPDATE `visits` SET `count_usage` = `count_usage` + 1 WHERE `model` ='Ball & Beam'";
-            $conn->query($sqlP);
-        }
-        else{
-            $sqlP = "INSERT INTO `visits` (`model`,`count_usage`) VALUES ('Ball & Beam',1)";
-            $conn->query($sqlP);
+        if($result = mysqli_query($conn, $sqlP)) {
+            if(mysqli_num_rows($result) > 0) {
+                $sqlP = "UPDATE `visits` SET `count_usage` = `count_usage` + 1 WHERE `model` ='Ball & Beam'";
+                $conn->query($sqlP);
+            }
+            else{
+                $sqlP = "INSERT INTO `visits` (`model`,`count_usage`) VALUES ('Ball & Beam',1)";
+                $conn->query($sqlP);
+            }
         }
     }
 ?>
@@ -33,8 +34,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.4/gsap.min.js"></script>
 
     <script src="js/script.js"></script>
+    <script src="js/buttonScript.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.3/fabric.min.js"></script>
     <script>
         function setup() {
             let cnv = createCanvas(400, 400);
