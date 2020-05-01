@@ -50,7 +50,7 @@ if($request_method == "POST"){
                 sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input);
             break;
             case "command":
-                $command = $_POST['end_inputTextArea'];
+                $command = $_POST['inputTextArea'];
                 createQuery($command, $conn);
             break;
         }
