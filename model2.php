@@ -106,7 +106,10 @@
             <div id="graphPlotly1" style="width:1500px;height:450px;"></div>
         </div>
     </div>
-
+    <div class="row" id="animation">
+        <canvas id="fabricAnim" width="1222" height="600"></canvas>
+        <!--<img src="inv_pendulum_edited.png" id="pendulum_img">-->
+    </div>
 
     <div class="footer bg-dark">
         <a href="model2.php?lang=sk"><?php echo $lang["lang_sk"]?></a>

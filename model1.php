@@ -111,7 +111,7 @@
     </div>
 
     
-    <div class="row" id = "animation">
+    <div class="row" id="animation">
         <canvas id="fabricAnim" width="1222" height="600"></canvas>
         <!--<img src="inv_pendulum_edited.png" id="pendulum_img">-->
     </div>
