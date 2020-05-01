@@ -34,8 +34,6 @@
 <!--            background(100);-->
 <!--        }-->
 <!--    </script>-->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
 </head>
 
 <body>
@@ -92,11 +90,11 @@
                 </form>
                 <div style="display:flex; justify-content: space-between; width:35%; margin:20px auto;">
                     <div style="flex">
-                        <input type="checkbox" id="animation_model1" name="animation" value="animation" checked="true">
+                        <label for="animation_model1"></label><input type="checkbox" id="animation_model1" name="animation" value="animation" checked>
                         <label for="animation"><?php echo $lang["animation"]?></label>
                     </div>
                     <div>
-                        <input type="checkbox" id="graph_model1" name="graph" value="graph" checked="true">
+                        <label for="graph_model1"></label><input type="checkbox" id="graph_model1" name="graph" value="graph" checked>
                         <label for="graph"><?php echo $lang["graph"]?></label>
                     </div>
                 </div>
@@ -104,7 +102,7 @@
         </div>
     </div>
     <div>
-        <div class="row">
+        <div class="row justify-content-center">
             <div id="graphPlotly1" style="width:1500px;height:450px;"></div>
         </div>
     </div>

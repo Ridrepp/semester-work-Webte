@@ -9,7 +9,6 @@ $(document).ready(function(){
                     button: "buttonSubmit1"
                 },
                 success: function() {
-                    $("body").html();
                 },
             }
         );
@@ -22,7 +21,7 @@ $(document).ready(function(){
                 data: {
                     button: "buttonSubmit2"
                 },
-                success: function(response) {
+                success: function() {
                 },
             }
         );
@@ -35,8 +34,7 @@ $(document).ready(function(){
                 data: {
                     button: "buttonSubmit3"
                 },
-                success: function(response) {
-                    $("body").html(response);
+                success: function() {
                 },
             }
         );

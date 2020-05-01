@@ -1,7 +1,6 @@
 <?php
     include "language.php";
     include "config.php";
-
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -20,8 +19,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.4/gsap.min.js"></script>
 
-    <script src="js/script.js"></script>
     <script src="js/buttonScript.js"></script>
+    <script src="js/script.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <!--    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.3/fabric.min.js"></script>
@@ -78,6 +77,7 @@
             </ul>
         </div>
     </nav>
+
     <br>
     <h2 class="center"><?php echo $lang["model1"];?></h2>
     <div class="container">
@@ -92,11 +92,11 @@
                 </form>
                 <div style="display:flex; justify-content: space-between; width:35%; margin:20px auto;">
                     <div style="flex">
-                        <input type="checkbox" id="animation_model1" name="animation" value="animation" checked="true">
+                        <label for="animation_model1"></label><input type="checkbox" id="animation_model1" name="animation" value="animation" checked>
                         <label for="animation"><?php echo $lang["animation"]?></label>
                     </div>
                     <div>
-                        <input type="checkbox" id="graph_model1" name="graph" value="graph" checked="true">
+                        <label for="graph_model1"></label><input type="checkbox" id="graph_model1" name="graph" value="graph" checked>
                         <label for="graph"><?php echo $lang["graph"]?></label>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
     </div>
 
     <div>
-        <div class="row">
+        <div class="row justify-content-center">
             <div id="graphPlotly1" style="width:1500px;height:420px;"></div>
         </div>
     </div>

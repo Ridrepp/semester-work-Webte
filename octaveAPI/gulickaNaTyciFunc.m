@@ -1,4 +1,4 @@
-function gulickaNaTyciFunc(func_arg)
+function gulickaNaTyciFunc(start_point,end_point)
 
 pkg load control;
 
@@ -16,17 +16,18 @@ N = -inv(C*inv(A-B*K)*B);
 
 sys = ss(A-B*K,B,C,D);
 
-func_arg = str2double(func_arg);
+start_point = str2double(start_point);
+end_point = str2double(end_point);
 
 t = 0:0.01:5;
-r = func_arg;
+r = start_point;
 
 initRychlost=0;
 initZrychlenie=0;
 [y,t,x]=lsim(N*sys,r*ones(size(t)),t,[initRychlost;0;initZrychlenie;0]);
 %plot(t,y)
 
-r = func_arg;
+r = end_point;
 
 [y,t,x]=lsim(N*sys,r*ones(size(t)),t,x(size(x,1),:));
 %plot(t,y)

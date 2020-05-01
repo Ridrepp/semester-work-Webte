@@ -1,4 +1,4 @@
-function lietadloFunc(func_arg)
+function lietadloFunc(start_point,end_point)
 
 pkg load control;
 A = [-0.313 56.7 0; -0.0139 -0.426 0; 0 56.7 0];
@@ -14,8 +14,9 @@ sys = ss(A-B*K, B*N, C, D);
 
 t = 0:0.1:40;
 
-func_arg = str2double(func_arg);
-r = func_arg;
+start_point = str2double(start_point);
+end_point = str2double(end_point);
+r = start_point;
 
 initAlfa=0;
 initQ=0;
@@ -23,7 +24,7 @@ initTheta=0;
 [y,t,x]=lsim(sys,r*ones(size(t)),t,[initAlfa;initQ;initTheta]);
 plot(t,y)
 
-r = func_arg;
+r = end_point;
 
 [y,t,x]=lsim(sys,r*ones(size(t)),t,x(size(x,1),:));
 %plot(t,y)

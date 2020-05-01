@@ -1,4 +1,4 @@
-function kyvadloFunc(func_arg)
+function kyvadloFunc(start_point,end_point)
 
 pkg load control;
 M = .5;
@@ -17,13 +17,14 @@ Ac = [(A-B*K)];
 N = -inv(C(1,:)*inv(A-B*K)*B);
 sys = ss(Ac,B*N,C,D);
 t = 0:0.05:10;
-func_arg = str2double(func_arg);
-r = func_arg;
+start_point = str2double(start_point);
+end_point = str2double(end_point);
+r = start_point;
 initPozicia=0;
 initUhol=0;
 [y,t,x]=lsim(sys,r*ones(size(t)),t,[initPozicia;0;initUhol;0]);
 %plot(t,y)
-r = func_arg; 
+r = end_point;
 [y,t,x]=lsim(sys,r*ones(size(t)),t,x(size(x,1),:));
 %plot(t,y)
 

@@ -1,4 +1,6 @@
 
 args = argv();
 a = args{1};
-kyvadloFunc(a);
+b = args{2};
+kyvadloFunc(a,b);
+

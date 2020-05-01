@@ -119,7 +119,6 @@ $(document).ready(function(){
                 }
             }
         );
-        return false;
     });
 
     $("#textAreaButton").click(function() {

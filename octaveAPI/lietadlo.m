@@ -1,4 +1,5 @@
 
 args = argv();
 a = args{1};
-lietadloFunc(a);
+b = args{2};
+lietadloFunc(a,b);

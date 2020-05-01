@@ -1,4 +1,5 @@
 
 args = argv();
 a = args{1};
-gulickaNaTyciFunc(a);
+b = args{2};
+gulickaNaTyciFunc(a,b);
