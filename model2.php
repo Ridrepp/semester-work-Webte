@@ -21,6 +21,7 @@
 
     <script src="js/script.js"></script>
     <script src="js/buttonScript.js"></script>
+    <script src="js/sketchModel2.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <!--    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.3/fabric.min.js"></script>

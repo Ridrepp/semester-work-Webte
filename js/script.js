@@ -86,112 +86,6 @@ $(document).ready(function(){
         display();
     });
 
-    $("#model1").click(function() {
-        start_input = $('#input1_start').val();
-        end_input = $('#input1').val();
-        $.ajax(
-            {
-                type: "POST",
-                url: "octaveAPI/api.php",
-                dataType: "json",
-                data: {
-                    action: "kyvadlo",
-                    start_input: start_input,
-                    end_input: end_input
-                },
-                success: function(response) {
-                    $('#initialInput').hide();
-                    $('#input1_start').val(response.last_end_input);
-                    console.log(response);
-
-                    updateGraph(graph, response.output1, response.output2);
-
-
-                    // fabric.Image.fromURL(pendulumImgSrc, function (img) {
-                        /*img.scale(0.5).set({
-                            left: 100,
-                            top: 100
-                        });
-                        canvas.add(img).setActiveObject(img);
-                        img.moveTo(0);*/
-                        //console.log(img.angle);
-                        //console.log("animating");
-
-                        // img.animate({left: 100, top: 0},{
-                        //     onChange: canvas.renderAll.bind(canvas),
-                        //     duration: 2000
-                        // })
-                    // });
-                },
-                error: function (response) {
-                    let r = response.responseText;
-                    if (r.includes("wrong apiKey")){
-                        $('#ApiErrorMsg').css("display", "block");
-                    }
-                    console.log(response.responseText);
-                }
-            }
-        );
-    });
-    $("#model2").click(function() {
-        start_input = $('#input2_start').val();
-        end_input = $('#input2').val();
-        $.ajax(
-            {
-                type: "POST",
-                url: "octaveAPI/api.php",
-                dataType: "json",
-                data: {
-                    action: "gulicka",
-                    start_input: start_input,
-                    end_input: end_input
-                },
-                success: function(response) {
-                    $('#initialInput').hide();
-                    $('#input2_start').val(response.last_end_input);
-                    console.log(response);
-                    updateGraph(graph, response.output1, response.output2);
-                },
-                error: function (response) {
-                    let r = response.responseText;
-                    if (r.includes("wrong apiKey")){
-                        $('#ApiErrorMsg').css("display", "block");
-                    }
-                    console.log(response.responseText);
-                }
-            }
-        );
-    });
-    $("#model3").click(function() {
-        start_input = $('#input3_start').val();
-        end_input = $('#input3').val();
-        $.ajax(
-            {
-                type: "POST",
-                url: "octaveAPI/api.php",
-                dataType: "json",
-                data: {
-                    action: "lietadlo",
-                    start_input: start_input,
-                    end_input: end_input
-                },
-                success: function(response) {
-                    $('#initialInput').hide();
-                    $('#input3_start').val(response.last_end_input);
-                    console.log(response);
-                    updateGraph(graph, response.output1, response.output2);
-                },
-                error: function (response) {
-                    let r = response.responseText;
-                    if (r.includes("wrong apiKey")){
-                        $('#ApiErrorMsg').css("display", "block");
-                    }
-                    console.log(response.responseText);
-                }
-            }
-        );
-    });
-
     $("#sendEmail").click(function() {
         let email = $('#email').val();
         $.ajax(
@@ -265,7 +159,7 @@ function updateGraph(graphName, y1, y2){
         name: 'Prvý výstup',
         line: {
             color: 'blue',
-            width: 1   
+            width: 1
         }
     };
     let graph2 = {
@@ -275,7 +169,7 @@ function updateGraph(graphName, y1, y2){
         name: 'Druhý výstup',
         line: {
             color: 'green',
-            width: 1   
+            width: 1
         }
     };
 
