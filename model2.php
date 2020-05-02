@@ -78,7 +78,8 @@
 
     <br>
     <h2 class="center"><?php echo $lang["model2"];?></h2>
-    <div class="container" style="margin-top: 20px">
+    <div class="alert alert-danger" id="ApiErrorMsg" style="display: none"><h5 id="errorMsgH4"><?php echo $lang["errorApiKey"];?></h5></div>
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-md-offset-3">
                 <form>

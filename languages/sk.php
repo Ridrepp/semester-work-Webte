@@ -19,5 +19,6 @@
         "graph" => "Graf",
         "animation" => "Animácia",
         "start_input" => "Počiatočná hodnota",
-        "statistics_email" => "Odoslanie štatistík na email"
+        "statistics_email" => "Odoslanie štatistík na email",
+        "errorApiKey" => "API kľúč nie je správny!"
     );

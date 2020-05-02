@@ -80,6 +80,7 @@
 
     <br>
     <h2 class="center"><?php echo $lang["model1"];?></h2>
+    <div class="alert alert-danger" id="ApiErrorMsg" style="display: none"><h5 id="errorMsgH4"><?php echo $lang["errorApiKey"];?></h5></div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-md-offset-3">
@@ -109,7 +110,6 @@
             <div id="graphPlotly1" style="width:1500px;height:420px;"></div>
         </div>
     </div>
-
     
     <div class="row" id="animation">
         <canvas id="fabricAnim" width="1222" height="600"></canvas>

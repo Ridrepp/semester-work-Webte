@@ -103,6 +103,7 @@ $(document).ready(function(){
                     $('#initialInput').hide();
                     $('#input1_start').val(response.last_end_input);
                     console.log(response);
+
                     updateGraph(graph, response.output1, response.output2);
 
 
@@ -123,6 +124,10 @@ $(document).ready(function(){
                     // });
                 },
                 error: function (response) {
+                    let r = response.responseText;
+                    if (r.includes("wrong apiKey")){
+                        $('#ApiErrorMsg').css("display", "block");
+                    }
                     console.log(response.responseText);
                 }
             }
@@ -148,8 +153,11 @@ $(document).ready(function(){
                     updateGraph(graph, response.output1, response.output2);
                 },
                 error: function (response) {
+                    let r = response.responseText;
+                    if (r.includes("wrong apiKey")){
+                        $('#ApiErrorMsg').css("display", "block");
+                    }
                     console.log(response.responseText);
-
                 }
             }
         );
@@ -174,8 +182,11 @@ $(document).ready(function(){
                     updateGraph(graph, response.output1, response.output2);
                 },
                 error: function (response) {
+                    let r = response.responseText;
+                    if (r.includes("wrong apiKey")){
+                        $('#ApiErrorMsg').css("display", "block");
+                    }
                     console.log(response.responseText);
-
                 }
             }
         );

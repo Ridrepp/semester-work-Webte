@@ -56,6 +56,8 @@
         </div>
     </div>
     <br>
+
+    <div class="alert alert-danger" id="ApiErrorMsg" style="display: none"><h5 id="errorMsgH4"><?php echo $lang["errorApiKey"];?></h5></div>
     <?php
         if (isset($_POST["inputTextArea"])){
             echo "<p class='center'>".$_POST["inputTextArea"]."</p>";

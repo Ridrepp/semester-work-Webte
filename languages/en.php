@@ -19,5 +19,6 @@
         "graph" => "Graph",
         "animation" => "Animation",
         "start_input" => "Initial value",
-        "statistics_email" => "Send statistics to email"
+        "statistics_email" => "Send statistics to email",
+        "errorApiKey" => "API key is wrong!"
     );

@@ -11,10 +11,12 @@ $(document).ready(function() {
                 },
                 success: function (response) {
                     console.log(response);
-                    $('#output').html(response);
+                    if (response.includes("wrong apiKey")){
+                        $('#ApiErrorMsg').css("display", "block");
+                    }
+                    else $('#output').html(response);
                 },
                 error: function (response) {
-                    console.log("ERROR");
                     console.log(response.responseText);
                 }
             }

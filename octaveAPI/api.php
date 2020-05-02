@@ -1,5 +1,15 @@
 <?php
 include(dirname(__FILE__)."/config.php");
+try {
+    $conn = new PDO("mysql:host=localhost;dbname=semestralneZadanie;charset=utf8", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage() . "<br>";
+}
+$query = "SELECT * FROM `apiKey`";
+$result = $conn->query($query)->fetch();
+
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -13,65 +23,67 @@ error_reporting(E_ALL);
 
 $request_method = $_SERVER["REQUEST_METHOD"];
 
+if ($result[1] == $apiKey){
+    if($request_method == "POST"){
 
-if($request_method == "POST"){
-    
-    
-    if(isset($_POST['end_input'])){
-        $end_input = $_POST['end_input'];   
-        $end_input = doubleval($end_input); 
-    }
-    if(isset($_POST['start_input'])){
-        //echo $_POST['start_input'];
-        $start_input = $_POST['start_input'];   
-        $start_input = doubleval($start_input); 
-    }
-    
-    ob_start();
-    if(isset($_POST['action'])){
-        $model = $_POST['action'];
-        switch($model){
-            case "kyvadlo":
-                $filename = "kyvadlo.m";
-                $filename_output1 = "kyvadlo_output_1.mat";
-                $filename_output2 = "kyvadlo_output_2.mat";
-                sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input);
-            break;
-            case "gulicka":
-                $filename = "gulickaNaTyci.m";
-                $filename_output1 = "gulickaNaTyci_output_1.mat";
-                $filename_output2 = "gulickaNaTyci_output_2.mat";
-                sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input);
-            break;
-            case "lietadlo":
-                $filename = "lietadlo.m";
-                $filename_output1 = "lietadlo_output_1.mat";
-                $filename_output2 = "lietadlo_output_2.mat";
-                sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input);
-            break;
-            case "command":
-                $command = $_POST['inputTextArea'];
-                createQuery($command, $conn);
-            break;
+
+        if(isset($_POST['end_input'])){
+            $end_input = $_POST['end_input'];
+            $end_input = doubleval($end_input);
+        }
+        if(isset($_POST['start_input'])){
+            //echo $_POST['start_input'];
+            $start_input = $_POST['start_input'];
+            $start_input = doubleval($start_input);
         }
 
-    }
-    
-    /*if (is_null($output))
-    {   
-        var_dump(ob_get_contents());
-    }
-    else
-    {  
+        ob_start();
+        if(isset($_POST['action'])){
+            $model = $_POST['action'];
+            switch($model){
+                case "kyvadlo":
+                    $filename = "kyvadlo.m";
+                    $filename_output1 = "kyvadlo_output_1.mat";
+                    $filename_output2 = "kyvadlo_output_2.mat";
+                    sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input);
+                    break;
+                case "gulicka":
+                    $filename = "gulickaNaTyci.m";
+                    $filename_output1 = "gulickaNaTyci_output_1.mat";
+                    $filename_output2 = "gulickaNaTyci_output_2.mat";
+                    sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input);
+                    break;
+                case "lietadlo":
+                    $filename = "lietadlo.m";
+                    $filename_output1 = "lietadlo_output_1.mat";
+                    $filename_output2 = "lietadlo_output_2.mat";
+                    sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input);
+                    break;
+                case "command":
+                    $command = $_POST['inputTextArea'];
+                    createQuery($command, $conn);
+                    break;
+            }
 
+        }
+
+        /*if (is_null($output))
+        {
+            var_dump(ob_get_contents());
+        }
+        else
+        {
+
+        }
+        ob_end_clean();
+        */
     }
-    ob_end_clean();  
-    */
+    else{
+    }
 }
 else{
-
+    throw new Exception("wrong apiKey");
 }
-
 function sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input){
     header('Content-Type: application/json');
 
@@ -96,6 +108,7 @@ function sendData($filename, $filename_output1, $filename_output2, $end_input, $
 }
 
 function createQuery($command, $conn){
+    //header('Content-Type: application/json');
 
     $sent_command = $command;
     $date = date("Y-m-d H:i:s");
@@ -112,9 +125,8 @@ function createQuery($command, $conn){
     $error_string = 'error';
     $error_test = 'octave-cli -qf superend_input.m 2>&1 1> /dev/null';
     $shell_output = shell_exec($error_test);
-    
+
     $pos = strpos($shell_output, $error_string);
-    
 
     if ($pos === false) {
         $error = 0;
@@ -122,12 +134,12 @@ function createQuery($command, $conn){
         $sent_command = str_replace("'","'\"\"'",$sent_command);
         $sql = "INSERT INTO textArea_log (time,sent_command,error,error_message) values ('$date','$sent_command', $error, '$error_message')";
         $conn->query($sql);
-        
+
 
         $cmd = "octave -qf superend_input.m";
         $output = exec ($cmd);
         ob_start();
-        passthru($cmd, $output);  
+        passthru($cmd, $output);
         $var = ob_get_contents();
 
     } else {
@@ -137,9 +149,10 @@ function createQuery($command, $conn){
         $sent_command = str_replace("'","'\"\"'",$sent_command);
         $error_message = str_replace("'","'\"\"'",$error_message);
         $sql = "INSERT INTO textArea_log (time,sent_command,error,error_message) values ('$date','$sent_command',$error,'$error_message')";
-            if ($conn->query($sql) !== TRUE) {
+            if ($conn->query($sql) != TRUE) {
                 echo "Error: " . $sql . "<br>" . $conn->error."<br>";
             }
+            $error_message = str_replace("'\"\"'","'",$error_message);
             echo $error_message;
         }
 
