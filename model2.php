@@ -19,7 +19,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.4/gsap.min.js"></script>
 
-    <script src="js/script.js"></script>
     <script src="js/buttonScript.js"></script>
     <script src="js/sketchModel2.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -105,11 +104,11 @@
     </div>
     <div>
         <div class="row justify-content-center">
-            <div id="graphPlotly1" style="width:1500px;height:450px;"></div>
+            <div id="graphPlotly2" style="width:1000px;height:350px;"></div>
         </div>
     </div>
-    <div class="row" id="animation">
-        <canvas id="fabricAnim" width="1222" height="600"></canvas>
+    <div class="row justify-content-center" id="animation" style="margin: 80px 0;">
+        <canvas id="fabricAnim2" width="900" height="400"></canvas>
         <!--<img src="inv_pendulum_edited.png" id="pendulum_img">-->
     </div>
 
