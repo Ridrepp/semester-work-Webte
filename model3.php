@@ -22,6 +22,7 @@
     <script src="js/buttonScript.js"></script>
     <script src="js/script.js"></script>
     <script src="js/sketchModel3.js"></script>
+    <script src="p5/p5.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <!--    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.3/fabric.min.js"></script>
@@ -108,6 +109,8 @@
             <div id="graphPlotly1" style="width:1500px;height:450px;"></div>
         </div>
     </div>
+
+    <div id="lul"></div>
 
     <div class="footer bg-dark">
         <a href="model3.php?lang=sk"><?php echo $lang["lang_sk"]?></a>
