@@ -49,7 +49,7 @@ function preload() {
 function setup() {
     let canvas;
     canvas = createCanvas(1000,650);
-    canvas.parent("lul");
+    canvas.parent("animation");
     background(color(153, 221, 255));
 }
 

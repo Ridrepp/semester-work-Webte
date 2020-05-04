@@ -24,18 +24,6 @@
     <script src="js/sketchModel3.js"></script>
     <script src="p5/p5.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<!--    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.3/fabric.min.js"></script>
-<!--    <script>-->
-<!--        function setup() {-->
-<!--            let cnv = createCanvas(400, 400);-->
-<!--            cnv.class("animationP5 p5Canvas");-->
-<!--            cnv.id("animationP5");-->
-<!--        }-->
-<!--        function draw() {-->
-<!--            background(100);-->
-<!--        }-->
-<!--    </script>-->
 </head>
 
 <body>
@@ -110,7 +98,7 @@
         </div>
     </div>
 
-    <div id="lul"></div>
+    <div id="animation"></div>
 
     <div class="footer bg-dark">
         <a href="model3.php?lang=sk"><?php echo $lang["lang_sk"]?></a>
