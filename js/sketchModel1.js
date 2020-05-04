@@ -1,10 +1,34 @@
-let data1;
-let data2;
+let data1 = []; let data2 = [];
+let arrayLength;
+var counter;
+var xCoord = [];
+var y1Coord = [];
+var y2Coord = [];
+var graphData = [];
+let actualData1;
+let actualData2;
+
+const layout = {
+    title: 'Prevrátené kyvadlo',
+    xaxis: {
+        title: 'čas',
+    },
+    yaxis: {
+        title: 'pozícia',
+    }
+
+};
 $(document).ready(function() {
-    let data = [];
-    let graph = document.getElementById('graphPlotly1');
-    Plotly.newPlot(graph, data);
+    var startPos, endPos,interval;
+    const arrayLength = 201;
+    const intervalDuration = 50;
+    createGraph();
+
     $("#model1").click(function () {
+        xCoord.length = 0;
+        y1Coord.length = 0;
+        y2Coord.length = 0;
+        counter = 0;
         start_input = $('#input1_start').val();
         end_input = $('#input1').val();
         $.ajax(
@@ -19,11 +43,29 @@ $(document).ready(function() {
                 },
                 success: function (response) {
                     $('#initialInput').hide();
-                    $('#input1_start').val(response.last_end_input);
-                    console.log(response);
-                    data1 =response.output1;
-                    data2 =response.output2;
-                    updateGraph(graph, response.output1, response.output2);
+                    interval = setInterval(function(){
+                        $('#model1').prop('disabled', true);
+                        if(counter == 0){
+                            startPos = start_input;
+                            endPos = response.output1[counter];
+                        }
+                        else{
+                            startPos = response.output1[counter-1];
+                            endPos = response.output1[counter];
+                        }
+                        actualData1 = response.output1[counter];
+                        actualData2 = response.output2[counter];
+                        updateGraphSketch1(response.output1[counter], response.output2[counter],counter);
+                        counter++;
+                        redraw();
+                        if(counter == arrayLength){
+                            clearInterval(interval);
+                            $('#input1_start').val(response.output1[counter-1]);
+                            xCoord.length =  y1Coord.length = y2Coord.length = 0;
+                            $('#model1').prop('disabled', false);
+                            // noLoop();
+                        }
+                    }, intervalDuration);
                 },
                 error: function (response) {
                     let r = response.responseText;
@@ -41,9 +83,6 @@ $(document).ready(function() {
 let angle = 0;
 let pendulum;
 let liner;
-let watched = 0;
-let timer = 0;
-let pcTimer = 0;
 
 function preload() {
     pendulum = loadImage('pendulum/Pendulum.png');
@@ -52,33 +91,60 @@ function preload() {
 
 function setup()  {
     let canvas = createCanvas(1000,400);
-    canvas.parent("animation1");
+    canvas.parent("animation");
     canvas.id("pendulum");
     background(color(192, 192, 192));
+    noLoop();
 }
 
 function draw() {
     background(color(192, 192, 192));
-    if (data1 != null && data2 != null && watched === 0) {
-        watched = 1;
-        console.log(data1, data2);
-    }
-    if (data1 != null && data2 != null){
-        translate((width/2)+data1[timer]*5,height);
-        rotate(data2[timer]);
-        imageMode(CENTER);
-        image(pendulum, 0, 0);
-        let x = Math.cos(PI / 180 * angle);
-        let y = Math.sin(PI / 180 * angle);
-        translate(x,y);
-        rotate(-data2[timer]);
-        image(liner, 0, 0);
-        console.log(data1[timer], data2[timer]);
+    translate((width/2)+actualData1,height);
+    rotate(actualData2);
+    imageMode(CENTER);
+    image(pendulum, 0, 0);
+    let x = Math.cos(PI / 180 * angle);
+    let y = Math.sin(PI / 180 * angle);
+    translate(x,y);
+    rotate(-actualData2);
+    image(liner, 0, 0);
+    console.log(actualData1, actualData2);
+}
 
-        if (pcTimer === 3){
-            timer +=1;
-            pcTimer = 0;
+
+
+function createGraph(){
+    let pendulum = {
+        x: xCoord,
+        y: y1Coord,
+        //type: 'scatter',
+        name: 'Pozícia kyvadla',
+        line: {
+            color: 'blue',
+            width: 1
         }
-        else pcTimer++;
-    }
+    };
+    let angleOfDeflection = {
+        x: xCoord,
+        y: y2Coord,
+        //type: 'scatter',
+        name: 'Vychýlenie v rad',
+        line: {
+            color: 'orange',
+            width: 1
+        }
+    };
+
+    let graphData = [pendulum, angleOfDeflection];
+    let graph = document.getElementById('graphPlotly1');
+    Plotly.newPlot(graph, graphData, layout);
+
+}
+
+function updateGraphSketch1(newY1, newY2, counter){
+    xCoord.push(counter);
+    y1Coord.push(newY1);
+    y2Coord.push(newY2);
+
+    Plotly.update('graphPlotly1', graphData, layout, 1);
 }

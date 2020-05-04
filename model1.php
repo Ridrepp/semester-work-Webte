@@ -94,11 +94,11 @@
     </div>
     <div>
         <div class="row justify-content-center">
-            <div id="graphPlotly1" style="width:1500px;height:450px;"></div>
+            <div id="graphPlotly1" style="width:1000px;height:400px;"></div>
         </div>
     </div>
 
-    <div id="animation1"></div>
+    <div id="animation"></div>
 
     <div class="footer bg-dark">
         <a href="model1.php?lang=sk"><?php echo $lang["lang_sk"]?></a>
