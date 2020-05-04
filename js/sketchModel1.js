@@ -40,16 +40,18 @@ $(document).ready(function() {
 
 let angle = 0;
 let pendulum;
+let liner;
 let watched = 0;
 let timer = 0;
 let pcTimer = 0;
 
 function preload() {
-    pendulum = loadImage('pendulum/Pendulum0.png');
+    pendulum = loadImage('pendulum/Pendulum.png');
+    liner = loadImage('pendulum/LineUnderPendulum.png')
 }
 
 function setup()  {
-    let canvas = createCanvas(700,400);
+    let canvas = createCanvas(1000,400);
     canvas.parent("animation1");
     canvas.id("pendulum");
     background(color(192, 192, 192));
@@ -61,16 +63,18 @@ function draw() {
         watched = 1;
         console.log(data1, data2);
     }
-    if (data1 != null){
-        if (timer>400){
-            timer = 0;
-        }
-        pendulum.resize(400,400);
-        translate(width/2,height);
-        rotate(data1[timer]);
+    if (data1 != null && data2 != null){
+        translate((width/2)+data1[timer]*5,height);
+        rotate(data2[timer]);
         imageMode(CENTER);
         image(pendulum, 0, 0);
+        let x = Math.cos(PI / 180 * angle);
+        let y = Math.sin(PI / 180 * angle);
+        translate(x,y);
+        rotate(-data2[timer]);
+        image(liner, 0, 0);
         console.log(data1[timer], data2[timer]);
+
         if (pcTimer === 3){
             timer +=1;
             pcTimer = 0;
