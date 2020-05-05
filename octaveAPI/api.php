@@ -67,23 +67,12 @@ if ($result[1] == $apiKey){
 
         }
 
-        /*if (is_null($output))
-        {
-            var_dump(ob_get_contents());
-        }
-        else
-        {
-
-        }
-        ob_end_clean();
-        */
-    }
-    else{
     }
 }
 else{
     throw new Exception("wrong apiKey");
 }
+
 function sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input){
     header('Content-Type: application/json');
 

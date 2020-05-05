@@ -41,17 +41,18 @@
         </div>
     </nav>
 
-
-
-
-
-    <div class="container" style="margin-top: 50px">
+    <div class="container" style="margin-top: 20px">
         <div class="row justify-content-center">
             <div class="col-md-6 col-md-offset-3">
                 <h1><?php echo $lang["documentation"]?></h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-7">
                 <p><?php echo $lang["descriptionDocumentation"]?></p>
             </div>
-
         </div>
     </div>
 
@@ -67,31 +68,46 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-7">
                 <table class="table table-bordered">
                     <thead>
-                    <tr class="table-dark" style="border: 1px solid black!important;">
-                        <th scope="col">Martin Michale</th>
-                        <th scope="col">Patrik Majtán</th>
-                        <th scope="col">Martin Domorák</th>
-                    </tr>
+                        <tr class="table-dark" style="border: 1px solid black!important;">
+                            <th scope="col">Martin Michale</th>
+                            <th scope="col">Patrik Majtán</th>
+                            <th scope="col">Martin Domorák</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                        <tr>
+                            <td><?php echo $lang["model3"]?></td>
+                            <td><?php echo $lang["model1"]?></td>
+                            <td><?php echo $lang["model2"]?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $lang["helpApi"]?></td>
+                            <td><?php echo $lang["helpApi"]?></td>
+                            <td><?php echo $lang["apiProgramming"]?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $lang["apiKey"]?></td>
+                            <td><?php echo $lang["graphics"]?></td>
+                            <td><?php echo $lang["apiTextArea"]?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $lang["completionMail"]?></td>
+                            <td><?php echo $lang["preparationMail"]?></td>
+                            <td><?php echo $lang["dbMail"]?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $lang["graphs"]?></td>
+                            <td><?php echo $lang["language_version"]?></td>
+                            <td><?php echo $lang["checkboxFun"]?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $lang["casLogs"]?></td>
+                            <td><?php echo $lang["casLogs"]?></td>
+                            <td><?php echo $lang["casLogs"]?></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

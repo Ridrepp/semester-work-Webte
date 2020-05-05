@@ -49,11 +49,18 @@
         <div class="row justify-content-center">
             <div class="col-md-6 col-md-offset-3">
                 <h1><?php echo $lang["navMainSite"]?></h1>
-                <p><?php echo $lang["description"]?></p>
             </div>
-
         </div>
     </div>
+    <div class="container" style="margin-top: 10px">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <h4 style="color: darkblue"><?php echo $lang["pageDescription"]?></h4>
+                <h6 style="color: darkgreen"><?php echo $lang["description"]?></h6>
+            </div>
+        </div>
+    </div>
+
     <br>
 
     <div class="alert alert-danger" id="ApiErrorMsg" style="display: none"><h5 id="errorMsgH4"><?php echo $lang["errorApiKey"];?></h5></div>
