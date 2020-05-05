@@ -28,8 +28,18 @@ a {
         height: 400px!important;
     }
 }
+/*@media(max-width: 1050px) {*/
+/*    #animation {*/
+/*        width: 700px!important;*/
+/*        height:300px!important;*/
+/*    }*/
+/*}*/
 a.navbar-brand active{
     color: black!important;
+}
+.margin-center{
+    margin-right: auto!important;
+    margin-left: auto!important;
 }
 .active{
     background-color: ghostwhite!important;
@@ -57,8 +67,7 @@ a.navbar-brand active{
 }
 
 .p5Canvas{
-    margin-left: 4%;
-    margin-bottom: 2%;
+    margin-bottom: 3%;
 }
 
 .footer{
@@ -68,4 +77,10 @@ a.navbar-brand active{
     text-align: center;
     color:white;
     width: 100%;
+}
+.footer a{
+    color: lightgray;
+}
+.footer a:hover{
+    color: white;
 }

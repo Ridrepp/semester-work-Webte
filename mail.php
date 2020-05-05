@@ -1,5 +1,5 @@
 <?php
-include "config.php";
+include "octaveAPI/config.php";
 $headers = "Content-Type: text/html; charset=UTF-8";
 if (isset($_POST["email"])){
     $email = $_POST["email"];

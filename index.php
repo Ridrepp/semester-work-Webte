@@ -18,7 +18,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.4/gsap.min.js"></script>
-
     <script src="js/textAreaScript.js"></script>
 </head>
 
@@ -49,7 +48,7 @@
     <div class="container" style="margin-top: 10px">
         <div class="row justify-content-center">
             <div class="col-md-6 col-md-offset-3">
-                <h1><?php echo $lang["heading"]?></h1>
+                <h1><?php echo $lang["navMainSite"]?></h1>
                 <p><?php echo $lang["description"]?></p>
             </div>
 

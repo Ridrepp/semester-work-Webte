@@ -1,6 +1,6 @@
 <?php
     include "language.php";
-    include "config.php";
+    include "octaveAPI/config.php";
 ?>
 <!DOCTYPE html>
 <html lang="sk">

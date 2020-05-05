@@ -48,7 +48,7 @@ function preload() {
 
 function setup() {
     let canvas;
-    canvas = createCanvas(1000,650);
+    canvas = createCanvas(900,700);
     canvas.parent("animation");
     background(color(153, 221, 255));
 }

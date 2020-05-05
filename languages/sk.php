@@ -10,7 +10,7 @@
         "descriptionDocumentation" => "Tu bude nejaká dokumentácia.",
         "taskDivision" => "Rozdelenie úloh",
         "sending" => "Odoslať",
-        "input" => "Vstup:",
+        "input" => "Konečná hodnota:",
         "commands" => "Zadaj príkazy: ",
         "model1" => "Prevrátené kyvadlo",
         "model2" => "Gulička na tyči",

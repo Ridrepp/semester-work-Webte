@@ -1,5 +1,4 @@
-let data1 = []; let data2 = [];
-let arrayLength;
+// let arrayLength;
 var counter;
 var xCoord = [];
 var y1Coord = [];
@@ -9,12 +8,12 @@ let actualData1;
 let actualData2;
 
 const layout = {
-    title: 'Prevrátené kyvadlo',
+    title: 'Prevrátené kyvadlo / Inverted Pendulum',
     xaxis: {
-        title: 'čas',
+        title: 'čas / time',
     },
     yaxis: {
-        title: 'pozícia',
+        title: 'pozícia / position',
     }
 
 };
@@ -90,7 +89,7 @@ function preload() {
 }
 
 function setup()  {
-    let canvas = createCanvas(1000,400);
+    let canvas = createCanvas(900,400);
     canvas.parent("animation");
     canvas.id("pendulum");
     background(color(192, 192, 192));
@@ -111,14 +110,11 @@ function draw() {
     console.log(actualData1, actualData2);
 }
 
-
-
 function createGraph(){
     let pendulum = {
         x: xCoord,
         y: y1Coord,
-        //type: 'scatter',
-        name: 'Pozícia kyvadla',
+        name: 'Pozícia kyvadla/Position of Pendulum',
         line: {
             color: 'blue',
             width: 1
@@ -127,8 +123,7 @@ function createGraph(){
     let angleOfDeflection = {
         x: xCoord,
         y: y2Coord,
-        //type: 'scatter',
-        name: 'Vychýlenie v rad',
+        name: 'Vychýlenie v rad/Deflection in rad',
         line: {
             color: 'orange',
             width: 1
@@ -141,10 +136,10 @@ function createGraph(){
 
 }
 
-function updateGraphSketch1(newY1, newY2, counter){
+function updateGraphSketch1(Y1, Y2, counter){
     xCoord.push(counter);
-    y1Coord.push(newY1);
-    y2Coord.push(newY2);
+    y1Coord.push(Y1);
+    y2Coord.push(Y2);
 
     Plotly.update('graphPlotly1', graphData, layout, 1);
 }

@@ -1,6 +1,6 @@
 <?php
     include "language.php";
-    include "config.php";
+    include "octaveAPI/config.php";
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -97,9 +97,9 @@
             <div id="graphPlotly1" style="width:1000px;height:400px;"></div>
         </div>
     </div>
-
-    <div id="animation"></div>
-
+    <div class="margin-center">
+        <div id="animation"></div>
+    </div>
     <div class="footer bg-dark">
         <a href="model1.php?lang=sk"><?php echo $lang["lang_sk"]?></a>
         | <a href="model1.php?lang=en"><?php echo $lang["lang_en"]?></a>

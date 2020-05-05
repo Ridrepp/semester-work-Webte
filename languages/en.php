@@ -10,7 +10,7 @@
         "descriptionDocumentation" => "In this will be documentation.",
         "taskDivision" => "Division of tasks",
         "sending" => "Send",
-        "input" => "Input:",
+        "input" => "End value:",
         "commands" => "Enter commands: ",
         "model1" => "Inverted Pendulum",
         "model2" => "Ball & Beam",
