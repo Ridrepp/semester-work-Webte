@@ -68,6 +68,7 @@
 
     <br>
     <h2 class="center"><?php echo $lang["model3"];?></h2>
+    <div class="center"><h6><?php echo $lang["model3info"];?></h6></div>
     <div class="alert alert-danger" id="ApiErrorMsg" style="display: none"><h5 id="errorMsgH4"><?php echo $lang["errorApiKey"];?></h5></div>
     <div class="container">
         <div class="row justify-content-center">

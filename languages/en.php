@@ -45,5 +45,6 @@
         "checkboxFun" => "Checkbox functionality",
         "casLogs" => "CAS logs (collaboration)",
         "ballRangeDescription" => "Accepted number range is between -600 and 600 in order to prevent the ball going off screen during animation. You can input fractional or whole numbers.<br>You can slow down the plotting of the graph and animation drawing by changing the slow constant in configuration file.",
-        "emailFormat" => "Email format: at least 3 characters » @ » at least 1 alphanumeric character » period » 2-5 letters after period"
+        "emailFormat" => "Email format: at least 3 characters » @ » at least 1 alphanumeric character » period » 2-5 letters after period",
+        "model3info" => "Entered values are in radians (1 radian is approximately 57 degrees).<br>It is recommended not to exceed 1.5 radians as input."
     );

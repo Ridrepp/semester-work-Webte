@@ -64,7 +64,7 @@
         "checkboxFun" => "Funkcionalita checkboxov",
         "casLogs" => "CAS logy (spolupráca)",
         "ballRangeDescription" => "Rozsah v ktorom je možné zadávať čísla je od -600 po 600 z dôvodu aby gulička pri animácii nevyšla mimo obrazovku. Môžete zadať desatinné alebo celé čísla.<br>Vykreslovanie grafu a animáciu je možné spomaliť úpravou spomaľovacej konštanty v konfiguračnom súbore.",
-        "emailFormat" => "Formát emailu je: minimálne 3 znaky » @ » minimálne 1 alfanumerický znak » bodka » 2-4 písmená za bodkou"
-
+        "emailFormat" => "Formát emailu je: minimálne 3 znaky » @ » minimálne 1 alfanumerický znak » bodka » 2-4 písmená za bodkou",
+        "model3info" => "Zadávané hodnoty sú v radiánoch (1 radián je približne 57 stupnov).<br>Odporúčanie neprekračovat 1,5 radiánu ako vstup."
 
     );
