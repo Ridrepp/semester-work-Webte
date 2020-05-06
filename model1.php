@@ -19,7 +19,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.4/gsap.min.js"></script>
 
-    <script src="js/buttonScript.js"></script>
+<!--    <script src="js/buttonScript.js"></script>-->
     <script src="js/script.js"></script>
     <script src="js/sketchModel1.js"></script>
     <script src="p5/p5.js"></script>
@@ -69,6 +69,14 @@
     <br>
     <h2 class="center"><?php echo $lang["model1"];?></h2>
     <div class="alert alert-danger" id="ApiErrorMsg" style="display: none"><h5 id="errorMsgH4"><?php echo $lang["errorApiKey"];?></h5></div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-7">
+                <h6 style="color: darkblue"><?php echo $lang["model1Description"];?></h6>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-md-offset-3">

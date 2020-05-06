@@ -25,7 +25,7 @@ $request_method = $_SERVER["REQUEST_METHOD"];
 
 
 if($request_method == "GET"){
-    if ($result[1] == $apiKey){
+    if ($apiKey == $_GET["apiKey"]){
 
         if(isset($_GET['end_input'])){
             $end_input = $_GET['end_input'];
@@ -100,6 +100,7 @@ function sendData($filename, $filename_output1, $filename_output2, $end_input, $
         $output1[$key] = floatval($value);
     }
     $error = 0;
+    $error_message = null;
     $sql = "INSERT INTO model_logs (model, start_value, end_value, error, error_message, time) values (?,?,?,?,?,?)";
     $stmt = $connSQLI->prepare($sql);
     $stmt->bind_param("sddiss", $model_name, $start_input, $end_input, $error, $error_message, $date);

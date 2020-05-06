@@ -50,7 +50,7 @@
     </div>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-7">
+            <div class="col-9">
                 <p><?php echo $lang["descriptionDocumentation"]?></p>
             </div>
         </div>
@@ -187,7 +187,9 @@
             </div>
         </div>
     </div>
-
+    <br>
+    <br>
+    <br>
     <div class="footer bg-dark">
         <a href="documentation.php?lang=sk"><?php echo $lang["lang_sk"]?></a>
         | <a href="documentation.php?lang=en"><?php echo $lang["lang_en"]?></a>

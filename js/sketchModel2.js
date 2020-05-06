@@ -129,7 +129,7 @@ $(document).ready(function() {
                 $.ajax(
                     {
                         type: "GET",
-                        url: "octaveAPI/api.php",
+                        url: "octaveAPI/api.php?apiKey=6acecbbb8b287799b906826d2391f5",
                         dataType: "json",
                         data: {
                             action: "gulicka",
