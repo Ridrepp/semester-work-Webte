@@ -3,13 +3,14 @@
         "title" => "Semestrálne zadanie",
         "navMainSite" => "Hlavná stránka",
         "pageDescription" => "Popis stránky",
-        "description" => "Na hlavnej stránke je príkazový riadok, do ktorého je možné zadávať jednoduché matematické 
-                          operácie, ktoré vrátia ich výsledok. Na ďalších podstránkach si je možné odskúšať výpočty 
+        "description" => "<br>Na hlavnej stránke je príkazový riadok, do ktorého je možné zadávať jednoduché matematické 
+                          operácie. Príkazy budú poslané do Octave a zobrazí sa presný výstup z Octave. V prípade, že bola v niektorom z príkazov
+                          chyba, zobrazí sa presná chyba, ktorá nastala.<br><br>Na ďalších podstránkach je možné vyskúšať výpočty 
                           pre modely pomocou zadávaných parametrov. Výpočty sa následne vykreslia v grafe a v animácii. 
-                          Pomocou checkboxov je možné deaktivovať graficky znázorňované výstupy. Na poslednej podstránke 
-                          (technická dokumentácia) sa nachádza rozdelenie úloh, štatistika využívania modelov a 
-                          možnosť odoslania štatistík na Vašu emailovú adresu. Na každej stránke je rovnako 
-                          umožnené si meniť jazyk týchto stránok (v spodnej časti stránok).",
+                          Pomocou checkboxov je možné deaktivovať graficky znázorňované výstupy.<br><br>Na poslednej podstránke,
+                          technická dokumentácia, sa nachádza rozdelenie úloh medzi projektovými vývojármi, štatistika využívania modelov, 
+                          a možnosť odoslania štatistík na Vašu emailovú adresu. Na každej stránke (v spodnej časti) je rovnako 
+                          umožnené meniť si jazyk týchto stránok medzi anglickým a slovenským jazykom.",
         "documentation" => "Technická dokumentácia",
         "lang_sk" => "Slovenčina",
         "lang_en" => "Angličtina",
@@ -40,7 +41,7 @@
         "taskDivision" => "Rozdelenie úloh",
         "sending" => "Odoslať",
         "input" => "Konečná hodnota:",
-        "commands" => "Zadaj príkazy: ",
+        "commands" => "Zadaj príkazy na odoslanie do Octave: ",
         "model1" => "Prevrátené kyvadlo",
         "model2" => "Gulička na tyči",
         "model3" => "Náklon lietadla",
@@ -50,20 +51,20 @@
         "start_input" => "Počiatočná hodnota",
         "statistics_email" => "Odoslanie štatistík na email",
         "errorApiKey" => "API kľúč nie je správny!",
-        "helpApi" => "Pomoc pri programovaní API",
-        "apiProgramming" => "Programovanie API",
-        "apiKey" => "Vytvorenie funkcionality API kľúča",
+        "helpApi" => "Pomoc pri vývoji API",
+        "apiProgramming" => "Vývoji API",
+        "apiKey" => "Funkcionalita API kľúča",
         "graphics" => "Grafika, dizajn stránky a úpravy kódov",
-        "apiTextArea" => "Vytvorenie API pre textAreu",
+        "apiTextArea" => "Vytvorenie API pre text area/vlastné príkazy",
         "dbMail" => "Komunikácia medzi DB a mailom",
         "preparationMail" => "Predpríprava pred sfunkčnením mailu",
         "completionMail" => "Dokončenie mailu",
         "graphs" => "Vytvorenie základných grafov",
         "language_version" => "Jazykové verzie (EN,SK)",
         "checkboxFun" => "Funkcionalita checkboxov",
-        "casLogs" => "CAS logy (spolupráca)"
-
-
+        "casLogs" => "CAS logy (spolupráca)",
+        "ballRangeDescription" => "Rozsah v ktorom je možné zadávať čísla je od -600 po 600 z dôvodu aby gulička pri animácii nevyšla mimo obrazovku. Môžete zadať desatinné alebo celé čísla.<br>Vykreslovanie grafu a animáciu je možné spomaliť úpravou spomaľovacej konštanty v konfiguračnom súbore.",
+        "emailFormat" => "Formát emailu je: minimálne 3 znaky » @ » minimálne 1 alfanumerický znak » bodka » 2-4 písmená za bodkou"
 
 
     );

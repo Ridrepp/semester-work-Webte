@@ -18,21 +18,46 @@ const layout = {
 
 };
 $(document).ready(function() {
+    var lang;
+    let searchParams = new URLSearchParams(window.location.search);
+
+    if(searchParams.has('lang')){
+        if(searchParams.get('lang') == 'en'){
+            lang = 'en'
+        }
+        else if(searchParams.get('lang') == 'sk'){
+            lang = 'sk';
+        }
+        else{
+            location.href = ("http://"+window.location.host + window.location.pathname + "?lang=sk");
+        }
+    }
+    else{
+        location.href = ("http://"+window.location.host + window.location.pathname + "?lang=sk");
+    }
+    console.log(searchParams.get('lang'));
+
     var startPos, endPos,interval;
     const arrayLength = 201;
     const intervalDuration = 50;
     createGraph();
+    let pattern = /^[-+]?[0-9]+[.]?[0-9]+$|^[-+]?[0-9]+$/;
 
     $("#model1").click(function () {
+        start_input = $('#input1_start').val();
+        end_input = $('#input1').val();
+        if(!start_input.match(pattern) || !end_input.match(pattern)){
+            $.notify("Zlý vstup.","error");
+            return;
+        }
         xCoord.length = 0;
         y1Coord.length = 0;
         y2Coord.length = 0;
         counter = 0;
-        start_input = $('#input1_start').val();
-        end_input = $('#input1').val();
+
         $.ajax(
             {
-                type: "POST",
+                type: "GET",
                 url: "octaveAPI/api.php",
                 dataType: "json",
                 data: {

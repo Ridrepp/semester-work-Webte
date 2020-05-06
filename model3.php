@@ -31,36 +31,36 @@
     if(isset($_POST["button"])){
         $sqlP = "SELECT * FROM `visits` WHERE `model` = 'Aircraft Pitch';";
 
-        if($result = mysqli_query($conn, $sqlP)) {
+        if($result = mysqli_query($connSQLI, $sqlP)) {
             if(mysqli_num_rows($result) > 0) {
                 $sqlP = "UPDATE `visits` SET `count_usage` = `count_usage` + 1 WHERE `model` ='Aircraft Pitch'";
-                $conn->query($sqlP);
+                $connSQLI->query($sqlP);
             }
             else{
                 $sqlP = "INSERT INTO `visits` (`model`,`count_usage`) VALUES ('Aircraft Pitch',1)";
-                $conn->query($sqlP);
+                $connSQLI->query($sqlP);
             }
         }
     }
     ?>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php"><?php echo $lang["navMainSite"]?><span class="sr-only">(current)</span></a>
+        <a class="navbar-brand" href=<?php echo "index.php?lang=".$_GET['lang']?>><?php echo $lang["navMainSite"]?><span class="sr-only">(current)</span></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="model1.php"><?php echo $lang["model1"]?></a>
+                    <a class="nav-link" href=<?php echo "model1.php?lang=".$_GET['lang']?>><?php echo $lang["model1"]?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="model2.php"><?php echo $lang["model2"]?></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="model3.php"><?php echo $lang["model3"]?></a>
+                    <a class="nav-link" href=<?php echo "model2.php?lang=".$_GET['lang']?>><?php echo $lang["model2"]?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="documentation.php"><?php echo $lang["documentation"]?></a>
+                    <a class="nav-link" href=<?php echo "model3.php?lang=".$_GET['lang']?>><?php echo $lang["model3"]?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=<?php echo "documentation.php?lang=".$_GET['lang']?>><?php echo $lang["documentation"]?></a>
                 </li>
             </ul>
         </div>

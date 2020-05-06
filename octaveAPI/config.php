@@ -3,13 +3,16 @@ $servername = "localhost";
 $username = "xmajtanp";
 $password = "STUApi**20";
 $dbname = "semestralneZadanie";
-
+$slowConstant = 1;
 $apiKey = "6acecbbb8b287799b906826d2391f5";
 
 date_default_timezone_set('Europe/Bratislava');
-$conn = new mysqli($servername, $username, $password, $dbname);
+$connSQLI = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($connSQLI->connect_error) {
+    die("Connection failed: " . $connSQLI->connect_error);
 }
-mysqli_set_charset($conn,"utf8");
+if($_POST['slow']){
+    echo json_encode(array("value"=>$slowConstant));
+}
+mysqli_set_charset($connSQLI,"utf8");

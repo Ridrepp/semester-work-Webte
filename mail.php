@@ -16,7 +16,8 @@ if (isset($_POST["email"])){
         $msg .= $row[1] . ": " . $row[2] . " x<br>";
     }
     $success = mail($email, "Štatistika - Team: Martin Michale, Martin Domorák, Patrik Majtán", $msg ,$headers);
-    if ($success) {
-        echo "Email bol úspešne odoslaný.";
-    }
+    echo "SUCCESS";
+}
+else{
+    echo "FAIL";
 }

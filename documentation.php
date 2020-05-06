@@ -19,23 +19,23 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php"><?php echo $lang["navMainSite"]?></a>
+        <a class="navbar-brand" href=<?php echo "index.php?lang=".$_GET['lang']?>><?php echo $lang["navMainSite"]?></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="model1.php"><?php echo $lang["model1"]?></a>
+                    <a class="nav-link" href=<?php echo "model1.php?lang=".$_GET['lang']?>><?php echo $lang["model1"]?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="model2.php"><?php echo $lang["model2"]?></a>
+                    <a class="nav-link" href=<?php echo "model2.php?lang=".$_GET['lang']?>><?php echo $lang["model2"]?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="model3.php"><?php echo $lang["model3"]?></a>
+                    <a class="nav-link" href=<?php echo "model3.php?lang=".$_GET['lang']?>><?php echo $lang["model3"]?></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="documentation.php"><?php echo $lang["documentation"]?></a>
+                <li class="nav-item">
+                    <a class="nav-link" href=<?php echo "documentation.php?lang=".$_GET['lang']?>><?php echo $lang["documentation"]?></a>
                 </li>
             </ul>
         </div>
@@ -114,16 +114,12 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="margin: 30px auto;">
         <div class="row justify-content-center">
             <div class="col-md-6 col-md-offset-3">
                 <h2><?php echo $lang["statistics"]?></h2>
             </div>
         </div>
-    </div>
-
-
-    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-md-offset-3">
                 <table class="table table-bordered">
@@ -139,7 +135,7 @@
                         <td>
                             <?php
                             $sqlP = "SELECT count_usage FROM `visits` WHERE `model` = 'Inverted Pendulum';";
-                            if($result = mysqli_query($conn, $sqlP)) {
+                            if($result = mysqli_query($connSQLI, $sqlP)) {
                                 if(mysqli_num_rows($result) > 0) {
                                     $row = mysqli_fetch_array($result);
                                     echo $row["count_usage"];
@@ -150,7 +146,7 @@
                         <td>
                             <?php
                             $sqlP = "SELECT count_usage FROM `visits` WHERE `model` = 'Ball & Beam';";
-                            if($result = mysqli_query($conn, $sqlP)) {
+                            if($result = mysqli_query($connSQLI, $sqlP)) {
                                 if(mysqli_num_rows($result) > 0) {
                                     $row = mysqli_fetch_array($result);
                                     echo $row["count_usage"];
@@ -161,7 +157,7 @@
                         <td>
                             <?php
                             $sqlP = "SELECT count_usage FROM `visits` WHERE `model` = 'Aircraft Pitch';";
-                            if($result = mysqli_query($conn, $sqlP)) {
+                            if($result = mysqli_query($connSQLI, $sqlP)) {
                                 if(mysqli_num_rows($result) > 0) {
                                     $row = mysqli_fetch_array($result);
                                     echo $row["count_usage"];
@@ -176,10 +172,11 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row justify-content-center">
+    <div class="container" >
+        <div class="row justify-content-center" style="margin: 0 0 80px 0;">
             <div class="col-md-6 col-md-offset-3">
                 <h5><?php echo $lang["statistics_email"]?></h5>
+                <h6 style="color:red; font-style: italic; font-size:10px;">*<?php echo $lang["emailFormat"]?></h6>
                 <form>
                     E-mail:
                     <label>

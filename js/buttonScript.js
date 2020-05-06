@@ -13,19 +13,6 @@ $(document).ready(function(){
             }
         );
     });
-    $("#model2").click(function() {
-        $.ajax(
-            {
-                type: "POST",
-                url: "model2.php",
-                data: {
-                    button: "buttonSubmit2"
-                },
-                success: function() {
-                },
-            }
-        );
-    });
     $("#model3").click(function() {
         $.ajax(
             {

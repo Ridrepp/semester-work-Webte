@@ -1,15 +1,39 @@
 let data1;
 let data2;
 $(document).ready(function() {
+    var lang;
+    let searchParams = new URLSearchParams(window.location.search);
+
+    if(searchParams.has('lang')){
+        if(searchParams.get('lang') == 'en'){
+            lang = 'en'
+        }
+        else if(searchParams.get('lang') == 'sk'){
+            lang = 'sk';
+        }
+        else{
+            location.href = ("http://"+window.location.host + window.location.pathname + "?lang=sk");
+        }
+    }
+    else{
+        location.href = ("http://"+window.location.host + window.location.pathname + "?lang=sk");
+    }
+    
     let data = [];
     let graph = document.getElementById('graphPlotly1');
+    let pattern = /^[-+]?[0-9]+[.]?[0-9]+$|^[-+]?[0-9]+$/;
     Plotly.newPlot(graph, data);
     $("#model3").click(function() {
         start_input = $('#input3_start').val();
         end_input = $('#input3').val();
+        
+        if(!start_input.match(pattern) || !end_input.match(pattern)){
+            $.notify("Zlý vstup.","error");
+            return;
+        }
         $.ajax(
             {
-                type: "POST",
+                type: "GET",
                 url: "octaveAPI/api.php",
                 dataType: "json",
                 data: {
