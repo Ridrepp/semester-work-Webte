@@ -67,11 +67,11 @@ $(document).ready(function() {
                     //updateGraph(graph, response.output1, response.output2);
                 },
                 error: function (response) {
-                    let r = response.responseText;
-                    if (r.includes("wrong apiKey")){
+                    let r = response.responseJSON.message;
+                    if (r.includes("incorrect")){
                         $('#ApiErrorMsg').css("display", "block");
                     }
-                    console.log(response.responseText);
+                    console.log(r);
                 }
             }
         );

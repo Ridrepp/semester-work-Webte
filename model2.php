@@ -69,14 +69,14 @@
     <h2 class="center"><?php echo $lang["model2"];?></h2>
     <div class="alert alert-danger" id="ApiErrorMsg" style="display: none"><h5 id="errorMsgH4"><?php echo $lang["errorApiKey"];?></h5></div>
     <div class="container">
-    <h6 style="color:red; font-style: italic; font-size:11px;">*<?php echo $lang["ballRangeDescription"]?></h6>
+    <h6 style="color:red; font-style: italic; font-size:13px;">*<?php echo $lang["ballRangeDescription"]?></h6>
         <div class="row justify-content-center">
             <div class="col-md-6 col-md-offset-3">
                 <form>
                     <div id="initialInput">
-                        <label for="input2_start"><?php echo $lang["start_input"]?> </label> <input id="input2_start" type="number">
+                        <label for="input2_start"><?php echo $lang["start_input"]?> </label> <input id="input2_start" placeholder = "[-500, +500]" type="number">
                     </div>
-                    <label for="input2"><?php echo $lang["input"]?> </label> <input id="input2" type="number"><br>
+                    <label for="input2"><?php echo $lang["input"]?> </label> <input id="input2" placeholder = "[-500, +500]" type="number"><br>
                     <button type="button" id="model2"><?php echo $lang["sending"]?></button>
                 </form>
                 <div style="display:flex; justify-content: space-between; width:35%; margin:20px auto;">

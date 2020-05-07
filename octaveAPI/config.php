@@ -5,7 +5,6 @@ $password = "STUApi**20";
 $dbname = "semestralneZadanie";
 $slowConstant = 1;
 $apiKey = "6acecbbb8b287799b906826d2391f5";
-
 date_default_timezone_set('Europe/Bratislava');
 $connSQLI = new mysqli($servername, $username, $password, $dbname);
 

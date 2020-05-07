@@ -32,20 +32,19 @@ $(document).ready(function() {
         $.ajax(
             {
                 type: "GET",
-                url: "octaveAPI/api.php",
+                url: "octaveAPI/api.php?apiKey=6acecbbb8b287799b906826d2391f5",
                 data: {
                     inputTextArea: textValue,
                     action: "command"
                 },
                 success: function (response) {
-                    console.log(response);
-                    if (response.includes("wrong apiKey")){
-                        $('#ApiErrorMsg').css("display", "block");
-                    }
-                    else $('#output').html(response);
+                    $('#output').html(response);
                 },
                 error: function (response) {
-                    console.log(response.responseText);
+                    let r = response.responseJSON.message;
+                    if ( r.includes("incorrect")){
+                        $('#ApiErrorMsg').css("display", "block");
+                    }
                 }
             }
         );

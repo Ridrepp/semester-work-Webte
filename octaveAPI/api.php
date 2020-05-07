@@ -25,57 +25,102 @@ $request_method = $_SERVER["REQUEST_METHOD"];
 
 
 if($request_method == "GET"){
-    if ($apiKey == $_GET["apiKey"]){
+    if(isset($_GET['apiKey']) && isset($_GET['action'])){
+        //var_dump(is_numeric($_GET['end_input']));
+    
+        if ($apiKey == $_GET["apiKey"]){
 
-        if(isset($_GET['end_input'])){
-            $end_input = $_GET['end_input'];
-            $end_input = doubleval($end_input);
-        }
-        if(isset($_GET['start_input'])){
-            $start_input = $_GET['start_input'];
-            $start_input = doubleval($start_input);
-        }
-
-        ob_start();
-        if(isset($_GET['action'])){
-            $model = $_GET['action'];
-            switch($model){
-                case "kyvadlo":
-                    $model_name = 'Inverted Pendulum';
-                    $filename = "kyvadlo.m";
-                    $filename_output1 = "kyvadlo_output_1.mat";
-                    $filename_output2 = "kyvadlo_output_2.mat";
-                    sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input, $connSQLI, $model_name);
-                    break;
-                case "gulicka":
-                    $model_name = 'Ball and Beam';
-                    $filename = "gulickaNaTyci.m";
-                    $filename_output1 = "gulickaNaTyci_output_1.mat";
-                    $filename_output2 = "gulickaNaTyci_output_2.mat";
-                    sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input, $connSQLI, $model_name);
-                    break;
-                case "lietadlo":
-                    $model_name = 'Aircraft Pitch';
-                    $filename = "lietadlo.m";
-                    $filename_output1 = "lietadlo_output_1.mat";
-                    $filename_output2 = "lietadlo_output_2.mat";
-                    sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input, $connSQLI, $model_name);
-                    break;
-                case "command":
+            if($_GET['action'] == 'kyvadlo' || $_GET['action'] == 'lietadlo' || $_GET['action'] == 'gulicka'){
+                
+                if (!isset($_GET['end_input']) || !isset($_GET['start_input']) || $_GET['start_input'] == '' || $_GET['end_input'] == ''){
+                    echo json_encode(array("message"=>"Start and end input parameters must be provided and cannot be empty."));
+                    http_response_code(400);
+                    return;
+                }
+                else if(!is_numeric($_GET['start_input']) || !is_numeric($_GET['end_input'])){
+                    echo json_encode(array("message"=>"Start and end input parameters must be represented numerically."));
+                    http_response_code(400);
+                    return;
+                }
+                else{
+                    $end_input = $_GET['end_input'];
+                    $end_input = doubleval($end_input);
+                    $start_input = $_GET['start_input'];
+                    $start_input = doubleval($start_input);
+                }
+            }
+            else if($_GET['action'] == 'command'){
+                if(!isset($_GET['inputTextArea'])){
+                    echo json_encode(array("message"=>"Missing required parameter."));
+                    http_response_code(400);
+                    return;
+                }
+                else if($_GET['inputTextArea'] == ''){
+                    echo json_encode(array("message"=>"inputTextArea parameter cannot be empty."));
+                    http_response_code(400);
+                    return;
+                }
+                else{
+                    var_dump($_GET['inputTextArea']);
                     $command = $_GET['inputTextArea'];
-                    createQuery($command, $connSQLI);
-                    break;
+                    
+                }
+            }
+            else{
+                echo json_encode(array("message"=>"Bad action parameter."));
+                http_response_code(400);
             }
 
+            ob_start();
+            if(isset($_GET['action'])){
+                $model = $_GET['action'];
+                switch($model){
+                    case "kyvadlo":
+                        $model_name = 'Inverted Pendulum';
+                        $filename = "kyvadlo.m";
+                        $filename_output1 = "kyvadlo_output_1.mat";
+                        $filename_output2 = "kyvadlo_output_2.mat";
+                        sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input, $connSQLI, $model_name);
+                        break;
+                    case "gulicka":
+                        $model_name = 'Ball and Beam';
+                        $filename = "gulickaNaTyci.m";
+                        $filename_output1 = "gulickaNaTyci_output_1.mat";
+                        $filename_output2 = "gulickaNaTyci_output_2.mat";
+                        sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input, $connSQLI, $model_name);
+                        break;
+                    case "lietadlo":
+                        $model_name = 'Aircraft Pitch';
+                        $filename = "lietadlo.m";
+                        $filename_output1 = "lietadlo_output_1.mat";
+                        $filename_output2 = "lietadlo_output_2.mat";
+                        sendData($filename, $filename_output1, $filename_output2, $end_input, $start_input, $connSQLI, $model_name);
+                        break;
+                    case "command":
+                        $command = $_GET['inputTextArea'];
+                        createQuery($command, $connSQLI);
+                        break;
+                }
+
+            }
+        }
+        else{
+            echo json_encode(array("message"=>"API key is incorrect."));
+            http_response_code(400);
+            return;
+            throw new Exception("wrong apiKey");
         }
     }
     else{
-        throw new Exception("wrong apiKey");
+        echo json_encode(array("message"=>"Required parameter is missing."));
+        http_response_code(400);
+        return;
     }
 }
 else{
     http_response_code(405);
     echo json_encode(array("message"=>"Error. This method is not allowed for this API endpoint."));
+    return;
 }
 
 

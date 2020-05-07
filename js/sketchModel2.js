@@ -5,10 +5,18 @@ var y1List = [];
 var y2List = [];
 var graphData = [];
 var first = true;
+
+const maxAnimationWidth = 500;
+const originalWidth = 1300;  
+const originalHeight = 550;
+var width, widthRatio, currAngleInDeg;
+const startBallRadius = 30;
+var ballRadius;
+
 $(document).ready(function() {
     var lang, intervalDuration;
     let searchParams = new URLSearchParams(window.location.search);
-    
+    $('#input2_start').val(0);
     if(searchParams.has('lang')){
         if(searchParams.get('lang') == 'en'){
             lang = 'en'
@@ -23,11 +31,65 @@ $(document).ready(function() {
     else{
         location.href = ("http://"+window.location.host + window.location.pathname + "?lang=sk");
     }
-   
+    $('#input2_start').on('input', updateBallPosition);
+
     counter = 0;
+    currAngleInDeg = 0;
+
     const pattern = /^[-+]?[0-9]+[.]?[0-9]+$|^[-+]?[0-9]+$/;
-    var startPos, endPos, angle, animationInterval, layoutTitle, xTitle, yTitle;
+    var startPos = 0;
+    var endPos = 0;
+    var currAngleRad = 0;
+    var animationInterval, layoutTitle, xTitle, yTitle;
     const responseArrayLength = 501;
+
+
+    canvas = new fabric.Canvas('fabricAnim2');
+
+    width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    widthRatio = originalWidth / width;
+    console.log(widthRatio);
+
+    canvas.width = (originalWidth-45) / widthRatio;
+    canvas.height = originalHeight / widthRatio;
+    canvas.setDimensions({width:canvas.width, height:canvas.height});
+
+    var topPadding = $('#fabricAnim2').height()/2;
+    var lineWidth = $('#fabricAnim2').width()+6;
+    ballRadius = startBallRadius / widthRatio;
+    gulicka = new fabric.Circle({ top: topPadding-ballRadius*2, left: ((lineWidth/2) + 0/widthRatio), radius: ballRadius, fill: 'green' ,selectable:false});    
+    palicka = new fabric.Line([0, 0, lineWidth, 0], {top: topPadding, stroke: 'red',selectable:false });
+    groupPalickaGulicka = new fabric.Group([palicka,gulicka],{angle: currAngleInDeg, selectable:false});
+    canvas.add(groupPalickaGulicka);
+    canvas.renderAll();
+
+    console.log(canvas.width, canvas.height);
+    
+
+    $(window).on('resize', function(){
+        width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+        widthRatio = originalWidth / width;
+        canvas.width = (originalWidth-45) / widthRatio;
+        canvas.height = originalHeight / widthRatio;
+        canvas.setDimensions({width:canvas.width, height:canvas.height});
+
+        var spos = parseFloat(startPos);
+        canvas.clear();
+        var topPadding = $('#fabricAnim2').height()/2;
+        var lineWidth = $('#fabricAnim2').width()+6;
+        ballRadius = startBallRadius / widthRatio;
+        
+        if(first){
+            gulicka = new fabric.Circle({ top: topPadding-ballRadius*2, left: ((lineWidth/2) + ($('#input2_start').val() / widthRatio) ), radius: ballRadius, fill: 'green' ,selectable:false});    
+        }
+        else{
+            gulicka = new fabric.Circle({ top: topPadding-ballRadius*2, left: ((lineWidth/2) + spos/widthRatio), radius: ballRadius, fill: 'green' ,selectable:false});    
+        }
+        palicka = new fabric.Line([0, 0, lineWidth, 0], {top: topPadding, stroke: 'red',selectable:false });
+        groupPalickaGulicka = new fabric.Group([palicka,gulicka],{angle: currAngleInDeg, selectable:false});
+        canvas.add(groupPalickaGulicka);
+        canvas.renderAll();
+    });
 
     const notifyErrorInput = {
         className: "error",
@@ -60,7 +122,7 @@ $(document).ready(function() {
     $('#animation_model2').click(display);
     $('#graph_model2').click(display);
 
-    canvas = new fabric.Canvas('fabricAnim2');
+
 
     $("#model2").click(function () {
         start_input = $('#input2_start').val();
@@ -120,7 +182,7 @@ $(document).ready(function() {
                 console.log(intervalDuration);
                 intervalDuration = parseInt(intervalDuration);
                 var notifyAnimationInProgress = {
-                    autoHideDelay: intervalDuration*responseArrayLength,
+                    autoHideDelay: (intervalDuration*responseArrayLength)*3,
                     arrowShow: false,
                     className: "warning",
                 };
@@ -157,21 +219,32 @@ $(document).ready(function() {
                                     startPos = response.output1[counter-1];
                                     endPos = response.output1[counter];
                                 }
-                                angle = response.output2[counter];
-                                beamAndBallAnimation(intervalDuration, startPos, endPos, angle, counter);
+                                currAngleRad = response.output2[counter];
+                                currAngleInDeg = currAngleRad*radToDeg;
+                                beamAndBallAnimation(intervalDuration, startPos, endPos, counter);
                                 updateGraph2(response.output1[counter], response.output2[counter], counter, layout);
                                 counter++;
                                 if(counter == responseArrayLength){
                                     clearInterval(animationInterval);
+                                    animationInterval = null;
                                     $('#input2_start').val(response.output1[counter-1]);
                                     xList.length =  y1List.length = y2List.length = counter = 0;
+                                    $('.notifyjs-wrapper').trigger('notify-hide');
+                                    if(lang == 'sk'){
+                                        $.notify("Animácia dokončená", "success");
+                                    }
+                                    else if(lang == 'en'){
+                                        $.notify("Animation complete", "success");
+                                    }
+                                    
                                 }
                              }, intervalDuration);
                              first = false;
                         },
                         error: function (response) {
-                            let r = response.responseText;
-                            if (r.includes("wrong apiKey")) {
+                            let r = response.responseJSON.message;
+
+                            if (r.includes("incorrect")) {
                                 if (lang == 'sk'){
                                     $.notify("Nesprávny API kľúč.", "error");
                                 }
@@ -214,7 +287,7 @@ function increaseVisitCount(){
 
 function checkInputRange(input, inputNr, notifyErrorInput, lang){
 
-    if(input > 600 || input < -600){
+    if(input > maxAnimationWidth || input < -maxAnimationWidth){
         if (lang == 'sk'){
             if(inputNr == 1){
                 $('#input2_start').notify("Číslo je mimo prijateľný rozsah.", notifyErrorInput);
@@ -236,17 +309,29 @@ function checkInputRange(input, inputNr, notifyErrorInput, lang){
     return true;
 }
 
-function beamAndBallAnimation(intervalDuration, startPos, endPos, angle, counter){
+function updateBallPosition(){
+    var newPos = $('#input2_start').val();
+    if(newPos <= maxAnimationWidth && newPos >= -maxAnimationWidth){
+        canvas.clear();
+        var topPadding = $('#fabricAnim2').height()/2;
+        var lineWidth = $('#fabricAnim2').width()+6;
+        ballRadius = startBallRadius / widthRatio;
+        gulicka = new fabric.Circle({ top: topPadding-ballRadius*2, left: ((lineWidth/2) + newPos/widthRatio), radius: ballRadius, fill: 'green' ,selectable:false});    
+        palicka = new fabric.Line([0, 0, lineWidth, 0], {top: topPadding, stroke: 'red',selectable:false });
+        groupPalickaGulicka = new fabric.Group([palicka,gulicka],{angle: currAngleInDeg, selectable:false});
+        canvas.add(groupPalickaGulicka);
+        canvas.renderAll();
+    }
+
+}
+
+function beamAndBallAnimation(intervalDuration, startPos, endPos, counter){
     var spos = parseFloat(startPos);
-    var epos = parseFloat(endPos);
-    var degAngle = parseFloat(angle*radToDeg);
-    //console.log("startPos:"+spos.toFixed(2)+" endPos:"+epos.toFixed(2)+ " angle in deg:"+degAngle.toFixed(2)+" counter:"+counter);
 
     if(palicka == null || gulicka == null || groupPalickaGulicka == null){
-        const topPadding = $('#fabricAnim2').height()/2;
-        //const lineWidth = $('#fabricAnim2').width();
-        const lineWidth = $('#fabricAnim2').width()+6;
-        const ballRadius = 15;
+        var topPadding = $('#fabricAnim2').height()/2;
+        var lineWidth = $('#fabricAnim2').width()+6;
+        ballRadius = ballRadius/widthRatio;
         palicka = new fabric.Line([0, 0, lineWidth, 0], {top: topPadding, stroke: 'red',selectable:false });
         gulicka = new fabric.Circle({ top: topPadding-ballRadius*2, left: (lineWidth/2) + spos, radius: ballRadius, fill: 'green' ,selectable:false});
         console.log((lineWidth/2) + spos, (lineWidth/2))
@@ -254,15 +339,14 @@ function beamAndBallAnimation(intervalDuration, startPos, endPos, angle, counter
         canvas.add(groupPalickaGulicka);
     }
 
-    groupPalickaGulicka.animate('angle', degAngle, {
+    groupPalickaGulicka.animate('angle', currAngleInDeg, {
         onChange: canvas.renderAll.bind(canvas),
         duration: intervalDuration,
     });
-      gulicka.animate('left', endPos, {
+      gulicka.animate('left', endPos / widthRatio, {
         onChange: canvas.renderAll.bind(canvas),
         duration: intervalDuration,
     });
-
     canvas.renderAll();
 }
 
@@ -297,9 +381,8 @@ function createGraph(layout, lang){
     };
 
     let graphData = [ballMovement, lineAngle];
-
     let graph = document.getElementById('graphPlotly2');
-    Plotly.newPlot(graph, graphData, layout);
+    Plotly.newPlot(graph, graphData, layout, {responsive: true});
 
 }
 
