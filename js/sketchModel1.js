@@ -1,24 +1,15 @@
-// let arrayLength;
-var counter;
-var xCoord = [];
-var y1Coord = [];
-var y2Coord = [];
-var graphData = [];
+let counter;
+let xCoord = [];
+let y1Coord = [];
+let y2Coord = [];
+let graphData = [];
 let actualData1;
 let actualData2;
+const maxValue = 400;
 
-const layout = {
-    title: 'Prevrátené kyvadlo / Inverted Pendulum',
-    xaxis: {
-        title: 'čas / time',
-    },
-    yaxis: {
-        title: 'pozícia / position',
-    }
-
-};
 $(document).ready(function() {
-    var lang;
+    let lang;
+    $('#descriptionModel1AfterSubmit').hide();
     let searchParams = new URLSearchParams(window.location.search);
 
     if(searchParams.has('lang')){
@@ -36,11 +27,40 @@ $(document).ready(function() {
         location.href = ("http://"+window.location.host + window.location.pathname + "?lang=sk");
     }
     console.log(searchParams.get('lang'));
-
     var startPos, endPos,interval;
     const arrayLength = 201;
     const intervalDuration = 50;
-    createGraph();
+    let layoutTitle, layoutXTitle, layoutYTitle;
+    if (lang === "sk") {
+        layoutTitle = 'Prevrátené kyvadlo';
+        layoutXTitle = 'časový úsek';
+        layoutYTitle = 'pozícia kyvadla';
+    } else {
+        layoutTitle = "Inverted Pendulum";
+        layoutXTitle = 'time period';
+        layoutYTitle = 'pendulum position';
+    }
+    const inputErrorNotify = {
+        className: "error",
+        position:"right middle",
+        autoHideDelay: 3000
+    };
+    let notifyAnimationProgress = {
+        autoHideDelay: (intervalDuration*arrayLength),
+        arrowShow: false,
+        className: "warning",
+    };
+    let layout = {
+        title: layoutTitle,
+        xaxis: {
+            title: layoutXTitle,
+        },
+        yaxis: {
+            title: layoutYTitle,
+        }
+
+    };
+    createGraph(layout,lang);
     let pattern = /^[-+]?[0-9]+[.]?[0-9]+$|^[-+]?[0-9]+$/;
 
     $("#model1").click(function () {
@@ -50,11 +70,15 @@ $(document).ready(function() {
             $.notify("Zlý vstup.","error");
             return;
         }
+        else if (checkRangeInput(start_input,0,inputErrorNotify,lang)===false )
+            return;
+        else if (checkRangeInput(end_input,1,inputErrorNotify,lang)===false )
+            return;
+
         xCoord.length = 0;
         y1Coord.length = 0;
         y2Coord.length = 0;
         counter = 0;
-
         $.ajax(
             {
                 type: "GET",
@@ -66,10 +90,18 @@ $(document).ready(function() {
                     end_input: end_input
                 },
                 success: function (response) {
+                    updateDatabaseCount();
                     $('#initialInput').hide();
+                    $('#descriptionModel1').hide();
+                    if(lang === 'sk'){
+                        $.notify("Práve prebieha animácia...", notifyAnimationProgress);
+                    }
+                    else if(lang === 'en'){
+                        $.notify("Animation is in progress...", notifyAnimationProgress);
+                    }
                     interval = setInterval(function(){
                         $('#model1').prop('disabled', true);
-                        if(counter == 0){
+                        if(counter === 0){
                             startPos = start_input;
                             endPos = response.output1[counter];
                         }
@@ -79,15 +111,22 @@ $(document).ready(function() {
                         }
                         actualData1 = response.output1[counter];
                         actualData2 = response.output2[counter];
-                        updateGraphSketch1(response.output1[counter], response.output2[counter],counter);
+                        updateGraphSketch1(response.output1[counter], response.output2[counter],counter,layout);
                         counter++;
                         redraw();
-                        if(counter == arrayLength){
+                        if(counter === arrayLength){
                             clearInterval(interval);
-                            $('#input1_start').val(response.output1[counter-1]);
+                            // $('#input1_start').val(response.output1[counter-1]);
+                            $('#input1').val("0");
+                            $('#descriptionModel1AfterSubmit').show();
                             xCoord.length =  y1Coord.length = y2Coord.length = 0;
                             $('#model1').prop('disabled', false);
-                            // noLoop();
+                            if(lang === 'sk'){
+                                $.notify("Animácia bola dokončená.", "success");
+                            }
+                            else if(lang === 'en'){
+                                $.notify("Animation completed.", "success");
+                            }
                         }
                     }, intervalDuration);
                 },
@@ -102,6 +141,44 @@ $(document).ready(function() {
         );
     });
 });
+
+function updateDatabaseCount() {
+    $.ajax(
+        {
+            type: "POST",
+            url: "model1.php",
+            data: {
+                button: "buttonSubmit1"
+            },
+            success: function() {
+            },
+        }
+    );
+}
+
+function checkRangeInput(input,inputCnt,inputErrorNotify, language) {
+    if(input > maxValue || input < -maxValue){
+        if (language === 'sk'){
+            if(inputCnt === 0){
+                $('#input1_start').notify("Číslo nie je v povolenom rozsahu.", inputErrorNotify);
+            }
+            else if (inputCnt === 1){
+                $('#input1').notify("Číslo nie je v povolenom rozsahu.", inputErrorNotify);
+            }
+        }
+        else if (language==='en'){
+            if(inputCnt === 0){
+                $('#input1_start').notify("Number is out of range.", inputErrorNotify);
+            }
+            else if (inputCnt === 1){
+                $('#input1').notify("Number is out of range.", inputErrorNotify);
+            }
+        }
+        return false;
+    }
+    return true;
+
+}
 
 
 let angle = 0;
@@ -135,11 +212,21 @@ function draw() {
     console.log(actualData1, actualData2);
 }
 
-function createGraph(){
+function createGraph(layout, language){
+    let pendulumName;
+    let angleOfDeflectionName;
+    if (language === "sk"){
+        pendulumName = "Pozícia kyvadla";
+        angleOfDeflectionName = "Vychýlenie v rad";
+    }
+    else{
+        pendulumName = "Position of Pendulum";
+        angleOfDeflectionName = "Deflection in rad";
+    }
     let pendulum = {
         x: xCoord,
         y: y1Coord,
-        name: 'Pozícia kyvadla/Position of Pendulum',
+        name: pendulumName,
         line: {
             color: 'blue',
             width: 1
@@ -148,7 +235,7 @@ function createGraph(){
     let angleOfDeflection = {
         x: xCoord,
         y: y2Coord,
-        name: 'Vychýlenie v rad/Deflection in rad',
+        name: angleOfDeflectionName,
         line: {
             color: 'orange',
             width: 1
@@ -161,7 +248,7 @@ function createGraph(){
 
 }
 
-function updateGraphSketch1(Y1, Y2, counter){
+function updateGraphSketch1(Y1, Y2, counter,layout){
     xCoord.push(counter);
     y1Coord.push(Y1);
     y2Coord.push(Y2);

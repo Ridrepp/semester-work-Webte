@@ -15,7 +15,6 @@ const layout = {
     }
 
 };
-
 $(document).ready(function() {
     var lang;
     let searchParams = new URLSearchParams(window.location.search);
@@ -59,6 +58,7 @@ $(document).ready(function() {
                     end_input: end_input
                 },
                 success: function(response) {
+                    updateDatabaseCounter();
                     $('#initialInput').hide();
                     $('#input3_start').val(response.last_end_input);
                     console.log(response);
@@ -82,6 +82,21 @@ let angle = 0;
 let planeImg;
 let flapImg;
 let cloudImg;
+
+
+function updateDatabaseCounter() {
+    $.ajax(
+        {
+            type: "POST",
+            url: "model3.php",
+            data: {
+                button: "buttonSubmit3"
+            },
+            success: function() {
+            },
+        }
+    );
+}
 
 function preload() {
     planeImg = loadImage('planeImg/planeModel.png');

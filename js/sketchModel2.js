@@ -95,7 +95,7 @@ $(document).ready(function() {
         className: "error",
         position:"right middle",
         autoHideDelay: 2000
-    }
+    };
 
     if(lang == 'sk'){
         layoutTitle = 'Gulička na Tyči';

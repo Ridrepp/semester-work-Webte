@@ -98,5 +98,8 @@
         "emailFormat" => "Email format: at least 3 characters » @ » at least 1 alphanumeric character » period » 2-5 letters after period",
         "model3info" => "Entered values are in radians (1 radian is approximately 57 degrees).<br>It is recommended not to exceed 1.5 radians as input.",
         "model1Description" => "The values for the pendulum position are entered as input. At the beginning, the initial value means initial position of inverted pendulum and the final value is the position where the pendulum wiil be moved. Subsequently, only the final values are entered.
-         It is not possible to confirm another value during the graph and animation rendering process until the rendering process is completed."
+        It is not possible to confirm another value during the graph and animation rendering process until the rendering process is completed.<br>
+        The range was determined so that the pendulum did not exceed out of the animation screen.",
+        "model1DescriptionAfterSubmit" => "You can enter the following Pendulum position:"
+
     );

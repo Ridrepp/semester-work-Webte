@@ -61,7 +61,7 @@ if($request_method == "GET"){
                     return;
                 }
                 else{
-                    var_dump($_GET['inputTextArea']);
+//                    var_dump($_GET['inputTextArea']);
                     $command = $_GET['inputTextArea'];
                     
                 }
@@ -108,7 +108,6 @@ if($request_method == "GET"){
             echo json_encode(array("message"=>"API key is incorrect."));
             http_response_code(400);
             return;
-            throw new Exception("wrong apiKey");
         }
     }
     else{

@@ -19,10 +19,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.4/gsap.min.js"></script>
 
-<!--    <script src="js/buttonScript.js"></script>-->
     <script src="js/script.js"></script>
     <script src="js/sketchModel1.js"></script>
     <script src="p5/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
@@ -70,10 +70,17 @@
     <h2 class="center"><?php echo $lang["model1"];?></h2>
     <div class="alert alert-danger" id="ApiErrorMsg" style="display: none"><h5 id="errorMsgH4"><?php echo $lang["errorApiKey"];?></h5></div>
 
-    <div class="container">
+    <div id="descriptionModel1" class="container">
         <div class="row justify-content-center">
             <div class="col-7">
                 <h6 style="color: darkblue"><?php echo $lang["model1Description"];?></h6>
+            </div>
+        </div>
+    </div>
+    <div id="descriptionModel1AfterSubmit" class="container">
+        <div class="row justify-content-center">
+            <div class="col-7">
+                <h6 style="color: darkblue"><?php echo $lang["model1DescriptionAfterSubmit"];?></h6>
             </div>
         </div>
     </div>
@@ -82,9 +89,9 @@
             <div class="col-md-6 col-md-offset-3">
                 <form id="model">
                     <div id="initialInput">
-                        <label for="input1_start"><?php echo $lang["start_input"]?> </label> <input id="input1_start" type="number">
+                        <label for="input1_start"><?php echo $lang["start_input"]?> </label> <input id="input1_start" type="number" placeholder="Range: [-400, 400]">
                     </div>
-                    <label for="input1"><?php echo $lang["input"]?> </label> <input id="input1" type="number"><br>
+                    <label for="input1"><?php echo $lang["input"]?> </label> <input id="input1" type="number" placeholder="Range: [-400, 400]"><br>
                     <button type="button" id="model1"><?php echo $lang["sending"]?></button>
                 </form>
                 <div style="display:flex; justify-content: space-between; width:35%; margin:20px auto;">

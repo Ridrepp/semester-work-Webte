@@ -97,6 +97,8 @@
         "emailFormat" => "Formát emailu je: minimálne 3 znaky » @ » minimálne 1 alfanumerický znak » bodka » 2-4 písmená za bodkou",
         "model3info" => "Zadávané hodnoty sú v radiánoch (1 radián je približne 57 stupnov).<br>Odporúčanie neprekračovat 1,5 radiánu ako vstup.",
         "model1Description" => "Ako vstup sa zadávajú hodnoty pre pozíciu kyvadla. Na začiatku sa definuje prvotná pozícia v počiatočnej hodnote a v konečnej hodnote sa zadáva pozícia,kam sa má kyvadlo premiestniť. Následne sa zadávajú už len konečné hodnoty.
-        Počas priebehu vykreslovania grafu a animácie nie je možné potvrdiť ďalšiu hodnotu až kým nie je priebeh vykreslovania ukončený."
+        Počas priebehu vykreslovania grafu a animácie nie je možné potvrdiť ďalšiu hodnotu, až kým nie je priebeh vykreslovania ukončený. <br>
+        Rozsah bol určený, aby kyvadlo nepresahovalo mimo plátno pre animáciu.",
+        "model1DescriptionAfterSubmit" => "Môžete zadať nasledujúcu pozíciu kyvadla:"
 
     );
