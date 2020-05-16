@@ -89,9 +89,9 @@
             <div class="col-md-6 col-md-offset-3">
                 <form id="model">
                     <div id="initialInput">
-                        <label for="input1_start"><?php echo $lang["start_input"]?> </label> <input id="input1_start" type="number" placeholder="Range: [-400, 400]">
+                        <label for="input1_start"><?php echo $lang["start_input"]?> </label> <input id="input1_start" type="number" placeholder="<?php echo $lang["placeholder"]?> [-400, 400]">
                     </div>
-                    <label for="input1"><?php echo $lang["input"]?> </label> <input id="input1" type="number" placeholder="Range: [-400, 400]"><br>
+                    <label for="input1"><?php echo $lang["input"]?> </label> <input id="input1" type="number" placeholder="<?php echo $lang["placeholder"]?> [-400, 400]"><br>
                     <button type="button" id="model1"><?php echo $lang["sending"]?></button>
                 </form>
                 <div style="display:flex; justify-content: space-between; width:35%; margin:20px auto;">

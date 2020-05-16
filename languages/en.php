@@ -16,7 +16,7 @@
         "documentation" => "Technical documentation",
         "lang_sk" => "Slovak",
         "lang_en" => "English",
-
+        "placeholder" => "Range: ",
         "descriptionDocumentation" => "<span style='color: darkgreen' ><b><i><u>Installations and modifications on the server</u></i></b></span>
         <br>At the beginning of the work, we installed the Octave on the server using the commands:<br>
         <b><i>$ sudo apt-add-repository ppa:octave/stable</i></b><br>

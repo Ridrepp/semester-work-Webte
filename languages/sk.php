@@ -67,6 +67,7 @@
     
         
         ",
+        "placeholder" => "Rozsah: ",
 
         "taskDivision" => "Rozdelenie úloh",
         "sending" => "Odoslať",
