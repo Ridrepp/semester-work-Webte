@@ -52,7 +52,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href=<?php echo "model1.php?lang=".$_GET['lang']?>><?php echo $lang["model1"]?></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href=<?php echo "model2.php?lang=".$_GET['lang']?>><?php echo $lang["model2"]?></a>
                 </li>
                 <li class="nav-item">
